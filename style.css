@@ -16,6 +16,7 @@
   border-top: 1px solid #dddfe2;
 }
 .table .table-sections {
+  position: relative;
   width: 100%;
 }
 .table .table-sections__section {
@@ -27,6 +28,30 @@
 }
 .table .table-sections__line {
   display: flex;
+}
+
+.redline {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  left: 70px;
+  width: 100vh;
+}
+.redline__ball {
+  position: relative;
+  bottom: 6px;
+  right: 6px;
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  background-color: #ea4335;
+}
+.redline__line {
+  position: relative;
+  bottom: 6px;
+  right: 6px;
+  width: 45%;
+  border-top: 1px solid #ea4335;
 }
 
 * {

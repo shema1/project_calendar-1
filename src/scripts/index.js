@@ -79,3 +79,28 @@ const getTimesBlocks = () => {
 const renderTableTimes = () => tableTimesElem.innerHTML = getTimesBlocks();
 
 renderTableTimes();
+
+
+const redlineElem = document.querySelector('.redline');
+
+
+const setTimeRedline = () => {
+    let result;
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const minutesInHours = now.getHours() * 60 + minutes;
+
+    hours < 1 ? result = minutes : result = minutesInHours;
+
+    return result;
+};
+
+const moveRedline = () => {
+    redlineElem.style.top = `${setTimeRedline()}px`;
+};
+
+moveRedline();
+
+
+setInterval(moveRedline, 10000);
