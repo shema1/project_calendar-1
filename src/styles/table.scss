@@ -1,6 +1,7 @@
 .table {
     .table-sections {
         &__section {
+            display: flex;
             height: 60px;
             border: 2px solid $table-color-border;
         }
