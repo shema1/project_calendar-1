@@ -1,3 +1,10 @@
+.table .table-sections__section {
+  height: 60px;
+  border: 2px solid #e7e7e7;
+}
 
+* {
+  box-sizing: border-box;
+}
 
 /*# sourceMappingURL=style.css.map */

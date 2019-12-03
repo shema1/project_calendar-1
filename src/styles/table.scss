@@ -1,0 +1,8 @@
+.table {
+    .table-sections {
+        &__section {
+            height: 60px;
+            border: 2px solid $table-color-border;
+        }
+    }
+}
