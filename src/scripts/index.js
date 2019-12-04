@@ -119,14 +119,19 @@ setInterval(moveRedline, 10000);
 
 //popup
 
-const selectDay = event {
-
+const selectDay = event => {
+    const popup = document.querySelector(`.popup`);
+    popup.classList.add('popup-on')
 }
 
 
 const timeListElemStart = document.querySelector('.start-time');
 const timeListElemEnd = document.querySelector('.end-date');
+const popupWindow = document.querySelector(`.table-sections`);
 
+
+
+popupWindow.addEventListener('click', selectDay)
 
 const TimeElem = () => {
     let resultTime = [];
@@ -137,10 +142,6 @@ const TimeElem = () => {
             let setSec = 0;
             for (let i = 0; i < 4; i++) {
                 timeList < 10 ? setTime = `0${timeList}` : setTime = timeList;
-                // setSec == 0 ? setSec = `0${setSec}` : setSec;
-
-
-
                 resultTime.push(
                     `<option 
             value="${timeList}"

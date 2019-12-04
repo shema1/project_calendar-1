@@ -117,6 +117,7 @@ header {
   align-items: center;
   height: 100vh;
   z-index: 20;
+  display: none;
 }
 .popup__form {
   background-color: #fff;
@@ -195,7 +196,7 @@ header {
 }
 
 .popup-on {
-  display: none;
+  display: flex;
 }
 
 .redline {

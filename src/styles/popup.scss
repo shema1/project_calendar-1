@@ -8,6 +8,7 @@
     align-items: center;
     height: 100vh;
     z-index: 20;
+    display: none;
     &__form {
         background-color: #fff;
         position: relative;
@@ -86,5 +87,5 @@
 }
 
 .popup-on {
-    display: none;
+    display: flex;
 }
