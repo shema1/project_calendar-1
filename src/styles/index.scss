@@ -1,5 +1,11 @@
 @import 'variables';
 @import 'table';
+@import 'header';
+@import 'popup';
 * {
     box-sizing: border-box;
+}
+
+body {
+    height: 1000vh;
 }
