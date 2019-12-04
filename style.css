@@ -197,7 +197,7 @@ header {
 
 .table {
   display: flex;
-  padding-top: 75px;
+  padding-top: 154px;
   width: 100%;
   z-index: 1;
 }
@@ -233,7 +233,6 @@ header {
   display: flex;
   position: absolute;
   align-items: center;
-  left: 70px;
   width: 27vh;
 }
 .redline__ball {

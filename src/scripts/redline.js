@@ -1,4 +1,16 @@
 const redlineElem = document.querySelector('.redline');
+const widthTableSectionElem = document.querySelector('.table-sections__section').offsetWidth;
+
+let correctIndent;
+const getCorrectIndent = () => {
+
+    const dayOfweek = new Date().getDay() - 1;
+
+    dayOfweek == 0 ? correctIndent = 0 : correctIndent = dayOfweek;
+
+};
+
+getCorrectIndent();
 
 
 
@@ -15,10 +27,11 @@ const setTimeRedline = () => {
 };
 
 const moveRedline = () => {
-    redlineElem.style.top = `${setTimeRedline() + 75}px`;
+    redlineElem.style.top = `${setTimeRedline() + 154}px`;
+    redlineElem.style.left = `${widthTableSectionElem * correctIndent + 70}px`;
 };
 
 moveRedline();
 
 
-setInterval(moveRedline, 1000);
+setInterval(moveRedline, 10000);

@@ -1,8 +1,5 @@
 const tableSectionsElem = document.querySelector('.table-sections');
 
-
-
-
 const getSectionBlock = () => generateNumbersRange(1, 7)
     .map(sectionNumber => `
         <div 
