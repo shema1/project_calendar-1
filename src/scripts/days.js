@@ -16,7 +16,6 @@ const getDays = () => {
             let newDay = new Date(timeNow);
             newDay.setDate(newDay.getDate() + sectionNumber);
 
-
             result.push(
                 `<div class="wrapper">
                     <span class="week-day">${nameDays[new Date(newDay).getDay()]}</span>
