@@ -1,12 +1,15 @@
 .popup {
     position: fixed;
+    // position: absolute;
     display: flex;
     left: 40%;
+    top: 5%;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    z-index: 2;
+    z-index: 20;
     &__form {
+        background-color: #fff;
         position: relative;
         width: 440px;
         height: 400px;
