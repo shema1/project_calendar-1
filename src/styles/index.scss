@@ -2,10 +2,8 @@
 @import 'table';
 @import 'header';
 @import 'popup';
+@import 'timeline';
 * {
     box-sizing: border-box;
-}
-
-body {
-    height: 1000vh;
+    font-family: Roboto;
 }

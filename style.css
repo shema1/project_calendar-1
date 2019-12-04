@@ -1,7 +1,57 @@
+.table {
+  display: flex;
+  width: 100%;
+}
+.table .times__blocks {
+  position: relative;
+  top: 51px;
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 60px;
+  color: #70757a;
+}
+.table .lines__blocks {
+  height: 60px;
+  width: 10px;
+  border-top: 1px solid #dddfe2;
+}
+.table .table-sections {
+  position: relative;
+  width: 100%;
+}
 .table .table-sections__section {
   display: flex;
   height: 60px;
-  border: 2px solid #e7e7e7;
+  width: 100%;
+  border-top: 1px solid #dddfe2;
+  border-left: 1px solid #dddfe2;
+}
+.table .table-sections__line {
+  display: flex;
+}
+
+.redline {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  left: 70px;
+  width: 27vh;
+}
+.redline__ball {
+  position: relative;
+  bottom: 6px;
+  right: 6px;
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  background-color: #ea4335;
+}
+.redline__line {
+  position: relative;
+  bottom: 6px;
+  right: 6px;
+  width: 100%;
+  border-top: 2px solid #ea4335;
 }
 
 header {
@@ -167,6 +217,7 @@ header {
 
 * {
   box-sizing: border-box;
+  font-family: Roboto;
 }
 
 body {
