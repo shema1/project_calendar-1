@@ -36,6 +36,13 @@ header {
   box-shadow: 0px 3px 6px 0px rgba(50, 50, 50, 0.11);
 }
 
+.add-button:hover {
+  background-color: #0000000d;
+  -webkit-box-shadow: 0px 2px 12px 0px rgba(50, 50, 50, 0.22);
+  -moz-box-shadow: 0px 2px 12px 0px rgba(50, 50, 50, 0.22);
+  box-shadow: 0px 2px 12px 0px rgba(50, 50, 50, 0.22);
+}
+
 .today-button {
   height: 40px;
   background-color: transparent;
@@ -59,6 +66,7 @@ header {
 .nav-button__size {
   font-size: 30px;
   border-radius: 100px;
+  outline: none;
 }
 
 .nav-button__size:hover {
@@ -128,6 +136,7 @@ header {
 .description-input {
   margin-left: 10px;
   resize: none;
+  border: none;
 }
 
 .submit-button {
