@@ -33,4 +33,4 @@ const renderDays = () => {
     daysElem.innerHTML = getDays();
 };
 
-renderDays();
+renderDays();\
