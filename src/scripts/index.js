@@ -118,6 +118,12 @@ setInterval(moveRedline, 10000);
 
 
 //popup
+
+const selectDay = event {
+
+}
+
+
 const timeListElemStart = document.querySelector('.start-time');
 const timeListElemEnd = document.querySelector('.end-date');
 
