@@ -117,7 +117,7 @@ setInterval(moveRedline, 10000);
 
 
 
-//date
+//popup
 const timeListElemStart = document.querySelector('.start-time');
 const timeListElemEnd = document.querySelector('.end-date');
 
