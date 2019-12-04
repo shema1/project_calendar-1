@@ -112,7 +112,7 @@ header {
   position: fixed;
   display: flex;
   left: 40%;
-  top: 5%;
+  top: 0%;
   justify-content: center;
   align-items: center;
   height: 100vh;

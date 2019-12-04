@@ -111,3 +111,44 @@ moveRedline();
 
 setInterval(moveRedline, 10000);
 
+
+
+
+
+
+
+//date
+const timeListElemStart = document.querySelector('.start-time');
+const timeListElemEnd = document.querySelector('.end-date');
+
+
+const TimeElem = () => {
+    let resultTime = [];
+
+    generateNumbersRange(1, 23)
+        .map(timeList => {
+            let setTime = '';
+            let setSec = 0;
+            for (let i = 0; i < 4; i++) {
+                timeList < 10 ? setTime = `0${timeList}` : setTime = timeList;
+                // setSec == 0 ? setSec = `0${setSec}` : setSec;
+
+
+
+                resultTime.push(
+                    `<option 
+            value="${timeList}"
+            data-block-number='${timeList}'>${setTime}:${setSec}</option> `)
+                setSec += 15
+            };
+        })
+
+    return resultTime.join('');
+}
+
+const renderTimeList = () => {
+    timeListElemStart.innerHTML = TimeElem();
+    timeListElemEnd.innerHTML = TimeElem();
+}
+
+renderTimeList();
