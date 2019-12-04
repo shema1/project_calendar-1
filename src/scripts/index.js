@@ -82,6 +82,12 @@ renderTableTimes();
 
 
 const redlineElem = document.querySelector('.redline');
+const sectionElem = document.querySelector('.table-sections__section');
+const windowElem = document.querySelector('window');
+
+
+
+
 
 
 const setTimeRedline = () => {
