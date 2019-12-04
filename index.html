@@ -11,16 +11,84 @@
 
 <body>
 
+    <header class="header">
+        <nav class="navigation">
+            <button class="add-button">
+                    <div class="VVsfQ">
+                            <svg width="36" height="36" viewBox="0 0 36 36">
+                                <path fill="#34A853" d="M16 16v14h4V20z"></path>
+                                <path fill="#4285F4" d="M30 16H20l-4 4h14z"></path>
+                                <path fill="#FBBC05" d="M6 16v4h10l4-4z"></path>
+                                <path fill="#EA4335" d="M20 16V6h-4v14z"></path>
+                                <path fill="none" d="M0 0h36v36H0z"></path>
+                            </svg>
+                        </div>
+                    <span class="add-button__text">Create</span>
+                </button>
+            <button class="today-button">
+                    Today
+                </button>
+            <div class="nav-button">
+                <button class="nav-button__prev button-style">
+                      <i class="material-icons nav-button__size">keyboard_arrow_left</i>
+                    </button>
+                <button class="nav-button__next button-style">
+                    <i class="material-icons nav-button__size ">chevron_right</i>
+                    </button>
+            </div>
+            <span class="header-date">
+                Nov - Dec 2019
+            </span>
+        </nav>
+    </header>
     <section class="table">
 
         <div class="times"></div>
         <div class="lines"></div>
+
         <div class="table-sections"></div>
         <div class="redline setTime">
             <div class="redline__ball"></div>
             <div class="redline__line"></div>
         </div>
     </section>
+    <section class="popup">
+        <form class="popup__form">
+            <button class="close material-icons">
+                close  
+            </button>
+            <input class="input__name" type="text" placeholder="Добавте назву">
+            <div class="date-block ">
+                <i class="Tiny material-icons">access_time
+                        </i>
+                <input class="start-date input-style" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <select class="start-time input-style" name="select"> 
+                        <option value="value1">12:00</option> 
+                        <option value="value2" selected>13:00</option>
+                        <option value="value3">14:00</option>
+                </select>
+                <span>-</span>
+                <select class="end-date input-style" name="select"> 
+                        <option value="value1">12:00</option> 
+                        <option value="value2" >13:00</option>
+                        <option value="value3"selected>14:00</option>
+                </select>
+                <input class="end-date input-style" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+            </div>
+            <div class="description">
+                <i class="Tiny material-icons">format_align_left
+                        </i>
+                <textarea class="description-input" name="text" cols="42" rows="4" placeholder="Добавте опис"></textarea>
+            </div>
+            <div class="control">
+                <button class="delete-ivent">  
+                    <i class="Tiny material-icons">delete</i>
+                </button>
+                <button class="submit-button" type="submit">Зберегти</button>
+            </div>
+        </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="src/scripts/index.js"></script>
 </body>
 
