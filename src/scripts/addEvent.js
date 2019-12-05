@@ -22,6 +22,8 @@ const addEvent = (event) => {
         description: inputDescription.value
     })
 
+    inputName.value = '';
+    inputDescription.value = '';
 
     console.log(events)
 }
