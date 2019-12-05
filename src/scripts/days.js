@@ -2,13 +2,16 @@
 
 const daysElem = document.querySelector('.days');
 const nameDays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПН', 'СБ'];
+
 let increasDataAttrib = 0;
+let timeNow = new Date();
 
-const timeNow = new Date();
-while (timeNow.getDay() !== 1) {
-    timeNow.setDate(timeNow.getDate() - 1);
+const getMonday = () => {
+    while (timeNow.getDay() !== 1) {
+        timeNow.setDate(timeNow.getDate() - 1);
+    };
 };
-
+getMonday();
 
 
 const getDays = () => {
@@ -91,6 +94,30 @@ const renderLines = () => {
 
 renderLines();
 
+//color current day
+const markCurrentDay = () => {
+    const weekDaysElems = document.querySelectorAll('.days__numbe');
+    const currentNumberDay = new Date().getDay() - 1;
+    [...weekDaysElems].find(arg => arg.dataset.blockNumber == currentNumberDay).classList.add('active-day-number');
+};
+
+markCurrentDay();
+
+//current month
+
+const monthElem = document.querySelector('.header-date');
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const setCurrentMonth = () => {
+    // nameDays[new Date(newDay).getDay()]
+    let currentMonth = months[new Date(timeNow).getMonth()];
+    console.log(timeNow);
+    console.log(currentMonth);
+    monthElem.textContent = `${currentMonth} - ${timeNow.getFullYear()}`;
+};
+
+setCurrentMonth();
+
 
 //arrows
 
@@ -103,6 +130,8 @@ const getNextWeek = () => {
     renderDays();
     renderTable();
     renderLines();
+    setCurrentMonth();
+    markCurrentDay();
 };
 
 const getPrevWeek = () => {
@@ -111,7 +140,27 @@ const getPrevWeek = () => {
     renderDays();
     renderTable();
     renderLines();
+    setCurrentMonth();
+    markCurrentDay();
 };
 
 nextArrowElem.addEventListener('click', getNextWeek);
 prevArrowElem.addEventListener('click', getPrevWeek);
+
+
+//today button
+
+const addButtonElem = document.querySelector('.today-button');
+
+const getCurrentDay = () => {
+    timeNow = new Date();
+    getMonday();
+    increasDataAttrib = 0;
+    renderDays();
+    renderTable();
+    renderLines();
+    setCurrentMonth();
+    markCurrentDay();
+};
+
+addButtonElem.addEventListener('click', getCurrentDay);
