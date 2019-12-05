@@ -111,12 +111,15 @@ header {
   position: fixed;
   display: flex;
   left: 40%;
+  top: 0%;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  z-index: 2;
+  z-index: 20;
+  display: none;
 }
 .popup__form {
+  background-color: #fff;
   position: relative;
   width: 440px;
   height: 400px;
@@ -192,7 +195,7 @@ header {
 }
 
 .popup-on {
-  display: none;
+  display: flex;
 }
 
 .table {
