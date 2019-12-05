@@ -68,21 +68,16 @@
             </button>
             <input class="input__name" type="text" placeholder="Добавте назву">
             <div class="date-block ">
-                <i class="Tiny material-icons">access_time
-                        </i>
-                <input class="start-date input-style" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <i class="Tiny material-icons">access_time</i>
+                <input class="start-date input-style" type="date" id="start" name="trip-start" value="2019-12-05" min="2019-12-05" max="2020-12-05">
                 <select class="start-time time-list input-style" name="select"> 
-                        <option value="value1">12:00</option> 
-                        <option value="value2" selected>13:00</option>
-                        <option value="value3">14:00</option>
+                
                 </select>
                 <span>-</span>
-                <select class="end-date time-list input-style" name="select"> 
-                        <option value="value1">12:00</option> 
-                        <option value="value2" >13:00</option>
-                        <option value="value3"selected>14:00</option>
+                <select class="end-time time-list input-style" name="select">       
+                
                 </select>
-                <input class="end-date input-style" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <input class="end-date input-style" type="date" id="start" name="trip-start" value="2019-12-05" min="2019-12-05" max="2020-12-31">
             </div>
             <div class="description">
                 <i class="Tiny material-icons">format_align_left
@@ -93,14 +88,13 @@
                 <button class="delete-ivent">  
                     <i class="Tiny material-icons">delete</i>
                 </button>
-                <button class="submit-button" type="submit">Зберегти</button>
+                <button class="submit-button">Зберегти</button>
             </div>
         </form>
     </section>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
     <script src="src/scripts/index.js"></script>
     <script src="src/scripts/generateRange.js"></script>
     <script src="src/scripts/table.js"></script>
@@ -108,6 +102,9 @@
     <script src="src/scripts/redline.js"></script>
     <script src="src/scripts/days.js"></script>
     <script src="src/scripts/setActiveDay.js"></script>
+    <script src="src/scripts/popup.js"></script>
+    <script src="src/scripts/sorage.js"></script>
+    <script src="src/scripts/addEvent.js"></script>
 </body>
 
 </html>
