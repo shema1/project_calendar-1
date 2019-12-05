@@ -109,11 +109,33 @@ const monthElem = document.querySelector('.header-date');
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const setCurrentMonth = () => {
-    // nameDays[new Date(newDay).getDay()]
+    const daysNumbElems = document.querySelectorAll('.days__numbe');
+
+    const arrWithoutFirstArg = [...daysNumbElems].splice(1);
+    let checkOneMonthOnWeek = false;
+
+    for (let arg of arrWithoutFirstArg) {
+        if (arg.textContent == 1) {
+            checkOneMonthOnWeek = true;
+        }
+    };
+
+    let incr = 0;
+    let setPreviosMonth = () => {
+        let result = '';
+        if (checkOneMonthOnWeek == true) {
+            if ((new Date(timeNow).getMonth() + 1) > 11) {
+                result = months[0];
+                incr = 1;
+            } else {
+                result = months[new Date(timeNow).getMonth() + 1];
+            }
+        }
+        return result;
+    };
+
     let currentMonth = months[new Date(timeNow).getMonth()];
-    console.log(timeNow);
-    console.log(currentMonth);
-    monthElem.textContent = `${currentMonth} - ${timeNow.getFullYear()}`;
+    monthElem.textContent = `${currentMonth} - ${setPreviosMonth()} ${timeNow.getFullYear() + +incr}`;
 };
 
 setCurrentMonth();
