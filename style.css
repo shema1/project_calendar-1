@@ -74,6 +74,39 @@ header {
   margin-left: 20px;
 }
 
+.days {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  padding-left: 70px;
+  width: 100%;
+  border-top: 1px solid #dddfe2;
+}
+.days .wrapper {
+  margin-top: 10px;
+}
+.days .wrapper .week-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #70757a;
+}
+.days .wrapper .days__numbe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  font-size: 25px;
+  color: #70757a;
+  border-radius: 100%;
+}
+.days .wrapper .active-day-number {
+  background-color: #1a73e8;
+  color: #fff;
+}
+
 .popup {
   position: fixed;
   display: flex;
@@ -164,7 +197,7 @@ header {
 
 .table {
   display: flex;
-  padding-top: 75px;
+  padding-top: 154px;
   width: 100%;
   z-index: 1;
 }
@@ -200,7 +233,6 @@ header {
   display: flex;
   position: absolute;
   align-items: center;
-  left: 70px;
   width: 27vh;
 }
 .redline__ball {
