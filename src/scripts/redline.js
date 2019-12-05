@@ -27,7 +27,7 @@ const setTimeRedline = () => {
 };
 
 const moveRedline = () => {
-    redlineElem.style.top = `${setTimeRedline() + 154}px`;
+    redlineElem.style.top = `${setTimeRedline() + 163}px`;
     redlineElem.style.left = `${widthTableSectionElem * correctIndent + 70}px`;
 };
 
