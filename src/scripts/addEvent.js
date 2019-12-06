@@ -15,10 +15,8 @@ const addEvent = (event) => {
         id: events.length + 1,
         name: inputName.value,
         createDate: new Date(),
-        startDateEvent: inputStartDate.value,
-        stratTimeEvent: inputStartTime.value,
-        endDateEvent: inputEndDate.value,
-        endTimeEvent: inputEndTime.value,
+        startDateEvent: inputStartDate.value + '-' + inputStartTime.value,
+        endDateEvent: inputEndDate.value + '-' + inputEndTime.value,
         description: inputDescription.value
     })
 
