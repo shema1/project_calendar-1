@@ -48,13 +48,23 @@ renderDays();
 
 const tableSectionsElem = document.querySelector('.table-sections');
 
-const getSectionBlock = () => generateNumbersRange(1, 7)
-    .map(sectionNumber => `
+const getSectionBlock = () => {
+    let result = [];
+    let tesst = document.querySelector('.days__numbe').innerHTML;
+    generateNumbersRange(1, 7)
+        .map(sectionNumber => {
+            result.push(
+                `
         <div 
-            class="table-sections__section" 
+            class="table-sections__section " 
             data-block-number='${sectionNumber + increasDataAttrib}'
-        ></div>`)
-    .join('');
+            data-date-number='${tesst++}'
+            data-month-number=''
+        ></div>`
+            )
+        })
+    return result.join('');
+}
 
 
 const getSectionLines = () => {

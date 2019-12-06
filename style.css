@@ -234,6 +234,7 @@ header {
   width: 100%;
 }
 .table .table-sections__section {
+  position: relative;
   display: flex;
   height: 60px;
   width: 100%;
@@ -265,6 +266,13 @@ header {
   right: 6px;
   width: 100%;
   border-top: 2px solid #ea4335;
+}
+
+.event {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-color: blueviolet;
 }
 
 * {
