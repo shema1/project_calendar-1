@@ -16,6 +16,7 @@ const btnAdd = document.querySelector('.add-button');
 popupWindow.addEventListener('click', selectDay)
 btnAdd.addEventListener('click', selectDay)
 
+
 const TimeElem = () => {
     let resultTime = [];
 
@@ -43,4 +44,4 @@ const renderTimeList = () => {
     timeListElemEnd.innerHTML = TimeElem();
 }
 
-renderTimeList();
+renderTimeList()
