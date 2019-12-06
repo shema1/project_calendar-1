@@ -1,5 +1,3 @@
-// days
-
 const daysElem = document.querySelector('.days');
 const nameDays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПН', 'СБ'];
 
@@ -13,6 +11,46 @@ const getMonday = () => {
 };
 getMonday();
 
+//current month
+
+const monthElem = document.querySelector('.header-date');
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let monthForPopup;
+
+const setCurrentMonth = () => {
+    const daysNumbElems = document.querySelectorAll('.days__numbe');
+
+    const arrWithoutFirstArg = [...daysNumbElems].splice(1);
+    let checkOneMonthOnWeek = false;
+
+    for (let arg of arrWithoutFirstArg) {
+        if (arg.textContent == 1) {
+            checkOneMonthOnWeek = true;
+        }
+    };
+
+    let incr = 0;
+    let setPreviosMonth = () => {
+        let result = '';
+        if (checkOneMonthOnWeek == true) {
+            if ((new Date(timeNow).getMonth() + 1) > 11) {
+                result = months[0];
+                incr = 1;
+            } else {
+                result = months[new Date(timeNow).getMonth() + 1];
+            }
+        }
+        return result;
+    };
+
+    let currentMonth = months[new Date(timeNow).getMonth()];
+    monthElem.textContent = `${currentMonth} - ${setPreviosMonth()} ${timeNow.getFullYear() + +incr}`;
+    monthForPopup = new Date(timeNow).getMonth() + 1;
+};
+
+setCurrentMonth();
+
+// days
 
 const getDays = () => {
     let result = [];
@@ -42,27 +80,68 @@ const renderDays = () => {
 renderDays();
 
 
-
-
 //tables
 
 const tableSectionsElem = document.querySelector('.table-sections');
 
+
 const getSectionBlock = () => {
     let result = [];
     let tesst = document.querySelector('.days__numbe').innerHTML;
-    generateNumbersRange(1, 7)
-        .map(sectionNumber => {
-            result.push(
-                `
-        <div 
-            class="table-sections__section " 
-            data-block-number='${sectionNumber + increasDataAttrib}'
-            data-date-number='${tesst++}'
-            data-month-number=''
-        ></div>`
-            )
-        })
+    const daysNumbElems = document.querySelectorAll('.days__numbe');
+    const arrWithoutFirstArg = [...daysNumbElems].splice(1);
+    const findFirstDay = arrWithoutFirstArg.find((arg, index) => arg.textContent == 1);
+
+
+    if (findFirstDay === undefined) {
+        generateNumbersRange(1, 7)
+            .map(sectionNumber => {
+                result.push(
+                    `
+                    <div 
+                        class="table-sections__section" 
+                        data-block-number='${sectionNumber + increasDataAttrib}'
+                        data-date-number='${tesst++}'
+                        data-month-number='${new Date(timeNow).getMonth() + 1}'
+                    ></div>`
+                )
+            })
+    } else {
+        const firstDate = arrWithoutFirstArg.indexOf(findFirstDay) + 1;
+        generateNumbersRange(1, firstDate)
+            .map(sectionNumber => {
+                result.push(
+                    `
+                <div 
+                    class="table-sections__section" 
+                    data-block-number='${sectionNumber + increasDataAttrib}'
+                    data-date-number='${tesst++}'
+                    data-month-number='${new Date(timeNow).getMonth() + 1}'
+                ></div>`
+                )
+            });
+
+        let testFromFirstDate = document.querySelectorAll('.days__numbe')[firstDate].textContent;
+        let testFromFirstDateNum = +testFromFirstDate;
+        let plusOne = 1;
+        let monthNum = new Date(timeNow).getMonth() + 1 + plusOne
+        if (new Date(timeNow).getMonth() + 1 >= 12) {
+            monthNum = 1;
+        };
+
+        generateNumbersRange(1, 7 - firstDate)
+            .map(sectionNumber => {
+                result.push(
+                    `
+                <div 
+                    class="table-sections__section" 
+                    data-block-number='${sectionNumber + increasDataAttrib}'
+                    data-date-number='${testFromFirstDate++}'
+                    data-month-number='${monthNum}'
+                ></div>`
+                )
+            });
+    }
     return result.join('');
 }
 
@@ -77,6 +156,8 @@ const getSectionLines = () => {
                 data-line-number='${lineNumber + increasDataAttrib}'
             >${blocksString}</div>`).join('');
 };
+
+
 
 const renderTable = () => {
     tableSectionsElem.innerHTML = getSectionLines();
@@ -108,47 +189,15 @@ renderLines();
 const markCurrentDay = () => {
     const weekDaysElems = document.querySelectorAll('.days__numbe');
     const currentNumberDay = new Date().getDay() - 1;
-    [...weekDaysElems].find(arg => arg.dataset.blockNumber == currentNumberDay).classList.add('active-day-number');
+    const findFirstDay = [...weekDaysElems].find(arg => arg.dataset.blockNumber == currentNumberDay);
+    if (findFirstDay !== undefined) {
+        findFirstDay.classList.add('active-day-number');
+    };
 };
 
 markCurrentDay();
 
-//current month
 
-const monthElem = document.querySelector('.header-date');
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-const setCurrentMonth = () => {
-    const daysNumbElems = document.querySelectorAll('.days__numbe');
-
-    const arrWithoutFirstArg = [...daysNumbElems].splice(1);
-    let checkOneMonthOnWeek = false;
-
-    for (let arg of arrWithoutFirstArg) {
-        if (arg.textContent == 1) {
-            checkOneMonthOnWeek = true;
-        }
-    };
-
-    let incr = 0;
-    let setPreviosMonth = () => {
-        let result = '';
-        if (checkOneMonthOnWeek == true) {
-            if ((new Date(timeNow).getMonth() + 1) > 11) {
-                result = months[0];
-                incr = 1;
-            } else {
-                result = months[new Date(timeNow).getMonth() + 1];
-            }
-        }
-        return result;
-    };
-
-    let currentMonth = months[new Date(timeNow).getMonth()];
-    monthElem.textContent = `${currentMonth} - ${setPreviosMonth()} ${timeNow.getFullYear() + +incr}`;
-};
-
-setCurrentMonth();
 
 
 //arrows
