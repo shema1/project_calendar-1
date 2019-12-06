@@ -1,8 +1,25 @@
 //popup
 
-const selectDay = () => {
+const selectDay = (event) => {
     const popup = document.querySelector(`.popup`);
     popup.classList.add('popup-on');
+    const start = document.querySelector(`.start-date`);
+
+
+    const getDayFromDiv = event.target.dataset.dateNumber
+    const getTimeFromDiv = event.target.closest('.table-sections__line').dataset.lineNumber
+
+    let dateNow = new Date();
+    let dayNow = getDayFromDiv;
+    dayNow < 10 ? dayNow = `0${dayNow}` : dayNow = dayNow;
+    start.value = dateNow.getFullYear() + '-' + dateNow.getMonth() + "-" + dayNow;
+
+    // const getDayDate = event.target.classList.contains('sector__seat');
+    // const getDateFromDiv
+    let a = dateNow.getFullYear() + '-' + dateNow.getMonth() + "-" + dayNow;
+
+    console.log('date:' + getDayFromDiv + ' ' + getTimeFromDiv)
+    console.log(a)
 }
 
 
@@ -15,7 +32,6 @@ const btnAdd = document.querySelector('.add-button');
 
 popupWindow.addEventListener('click', selectDay)
 btnAdd.addEventListener('click', selectDay)
-
 
 const TimeElem = () => {
     let resultTime = [];

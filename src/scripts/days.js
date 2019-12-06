@@ -2,13 +2,16 @@
 
 const daysElem = document.querySelector('.days');
 const nameDays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПН', 'СБ'];
+
 let increasDataAttrib = 0;
+let timeNow = new Date();
 
-const timeNow = new Date();
-while (timeNow.getDay() !== 1) {
-    timeNow.setDate(timeNow.getDate() - 1);
+const getMonday = () => {
+    while (timeNow.getDay() !== 1) {
+        timeNow.setDate(timeNow.getDate() - 1);
+    };
 };
-
+getMonday();
 
 
 const getDays = () => {
@@ -45,13 +48,23 @@ renderDays();
 
 const tableSectionsElem = document.querySelector('.table-sections');
 
-const getSectionBlock = () => generateNumbersRange(1, 7)
-    .map(sectionNumber => `
+const getSectionBlock = () => {
+    let result = [];
+    let tesst = document.querySelector('.days__numbe').innerHTML;
+    generateNumbersRange(1, 7)
+        .map(sectionNumber => {
+            result.push(
+                `
         <div 
-            class="table-sections__section" 
+            class="table-sections__section " 
             data-block-number='${sectionNumber + increasDataAttrib}'
-        ></div>`)
-    .join('');
+            data-date-number='${tesst++}'
+            data-month-number=''
+        ></div>`
+            )
+        })
+    return result.join('');
+}
 
 
 const getSectionLines = () => {
@@ -91,6 +104,52 @@ const renderLines = () => {
 
 renderLines();
 
+//color current day
+const markCurrentDay = () => {
+    const weekDaysElems = document.querySelectorAll('.days__numbe');
+    const currentNumberDay = new Date().getDay() - 1;
+    [...weekDaysElems].find(arg => arg.dataset.blockNumber == currentNumberDay).classList.add('active-day-number');
+};
+
+markCurrentDay();
+
+//current month
+
+const monthElem = document.querySelector('.header-date');
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const setCurrentMonth = () => {
+    const daysNumbElems = document.querySelectorAll('.days__numbe');
+
+    const arrWithoutFirstArg = [...daysNumbElems].splice(1);
+    let checkOneMonthOnWeek = false;
+
+    for (let arg of arrWithoutFirstArg) {
+        if (arg.textContent == 1) {
+            checkOneMonthOnWeek = true;
+        }
+    };
+
+    let incr = 0;
+    let setPreviosMonth = () => {
+        let result = '';
+        if (checkOneMonthOnWeek == true) {
+            if ((new Date(timeNow).getMonth() + 1) > 11) {
+                result = months[0];
+                incr = 1;
+            } else {
+                result = months[new Date(timeNow).getMonth() + 1];
+            }
+        }
+        return result;
+    };
+
+    let currentMonth = months[new Date(timeNow).getMonth()];
+    monthElem.textContent = `${currentMonth} - ${setPreviosMonth()} ${timeNow.getFullYear() + +incr}`;
+};
+
+setCurrentMonth();
+
 
 //arrows
 
@@ -103,6 +162,8 @@ const getNextWeek = () => {
     renderDays();
     renderTable();
     renderLines();
+    setCurrentMonth();
+    markCurrentDay();
 };
 
 const getPrevWeek = () => {
@@ -111,7 +172,27 @@ const getPrevWeek = () => {
     renderDays();
     renderTable();
     renderLines();
+    setCurrentMonth();
+    markCurrentDay();
 };
 
 nextArrowElem.addEventListener('click', getNextWeek);
 prevArrowElem.addEventListener('click', getPrevWeek);
+
+
+//today button
+
+const addButtonElem = document.querySelector('.today-button');
+
+const getCurrentDay = () => {
+    timeNow = new Date();
+    getMonday();
+    increasDataAttrib = 0;
+    renderDays();
+    renderTable();
+    renderLines();
+    setCurrentMonth();
+    markCurrentDay();
+};
+
+addButtonElem.addEventListener('click', getCurrentDay);
