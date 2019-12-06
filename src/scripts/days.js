@@ -16,6 +16,7 @@ getMonday();
 const monthElem = document.querySelector('.header-date');
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 let monthForPopup;
+let yearForBlockElem;
 
 const setCurrentMonth = () => {
     const daysNumbElems = document.querySelectorAll('.days__numbe');
@@ -36,6 +37,7 @@ const setCurrentMonth = () => {
             if ((new Date(timeNow).getMonth() + 1) > 11) {
                 result = months[0];
                 incr = 1;
+                yearForBlockElem = timeNow.getFullYear() + +incr;
             } else {
                 result = months[new Date(timeNow).getMonth() + 1];
             }
@@ -90,7 +92,7 @@ const getSectionBlock = () => {
     let tesst = document.querySelector('.days__numbe').innerHTML;
     const daysNumbElems = document.querySelectorAll('.days__numbe');
     const arrWithoutFirstArg = [...daysNumbElems].splice(1);
-    const findFirstDay = arrWithoutFirstArg.find((arg, index) => arg.textContent == 1);
+    const findFirstDay = arrWithoutFirstArg.find(arg => arg.textContent == 1);
 
 
     if (findFirstDay === undefined) {
@@ -103,6 +105,7 @@ const getSectionBlock = () => {
                         data-block-number='${sectionNumber + increasDataAttrib}'
                         data-date-number='${tesst++}'
                         data-month-number='${new Date(timeNow).getMonth() + 1}'
+                        data-year-number='${new Date(timeNow).getFullYear()}'
                     ></div>`
                 )
             })
@@ -117,17 +120,19 @@ const getSectionBlock = () => {
                     data-block-number='${sectionNumber + increasDataAttrib}'
                     data-date-number='${tesst++}'
                     data-month-number='${new Date(timeNow).getMonth() + 1}'
+                    data-year-number='${new Date(timeNow).getFullYear()}'
                 ></div>`
                 )
             });
 
         let testFromFirstDate = document.querySelectorAll('.days__numbe')[firstDate].textContent;
-        let testFromFirstDateNum = +testFromFirstDate;
-        let plusOne = 1;
+
         let monthNum = new Date(timeNow).getMonth() + 2;
         if (new Date(timeNow).getMonth() + 2 >= 12) {
             monthNum = 1;
         };
+
+        const nextYearForBlock = document.querySelector('.header-date').textContent.slice(-4);
 
         generateNumbersRange(1, 7 - firstDate)
             .map(sectionNumber => {
@@ -138,6 +143,7 @@ const getSectionBlock = () => {
                     data-block-number='${sectionNumber + increasDataAttrib}'
                     data-date-number='${testFromFirstDate++}'
                     data-month-number='${monthNum}'
+                    data-year-number='${nextYearForBlock}'
                 ></div>`
                 )
             });
@@ -209,9 +215,9 @@ const getNextWeek = () => {
     timeNow.setDate(timeNow.getDate() + 7);
     increasDataAttrib += 7;
     renderDays();
+    setCurrentMonth();
     renderTable();
     renderLines();
-    setCurrentMonth();
     markCurrentDay();
 };
 
@@ -219,9 +225,9 @@ const getPrevWeek = () => {
     timeNow.setDate(timeNow.getDate() - 7);
     increasDataAttrib -= 7;
     renderDays();
+    setCurrentMonth();
     renderTable();
     renderLines();
-    setCurrentMonth();
     markCurrentDay();
 };
 
