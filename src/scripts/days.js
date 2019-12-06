@@ -124,8 +124,8 @@ const getSectionBlock = () => {
         let testFromFirstDate = document.querySelectorAll('.days__numbe')[firstDate].textContent;
         let testFromFirstDateNum = +testFromFirstDate;
         let plusOne = 1;
-        let monthNum = new Date(timeNow).getMonth() + 1 + plusOne
-        if (new Date(timeNow).getMonth() + 1 >= 12) {
+        let monthNum = new Date(timeNow).getMonth() + 2;
+        if (new Date(timeNow).getMonth() + 2 >= 12) {
             monthNum = 1;
         };
 
