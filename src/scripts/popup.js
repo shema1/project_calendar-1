@@ -1,25 +1,31 @@
 //popup
+const check = (elem) => {
+
+    let num = elem
+    num < 10 ? num = `0${num}` : num;
+    return num
+}
+
 
 const selectDay = (event) => {
     const popup = document.querySelector(`.popup`);
     popup.classList.add('popup-on');
-    const start = document.querySelector(`.start-date`);
 
+    const startDate = document.querySelector(`.start-date`);
+    const endDate = document.querySelector(`.end-date`);
+    const startTime = document.querySelector('.start-time')
+    const endTime = document.querySelector('.end-time')
 
-    const getDayFromDiv = event.target.dataset.dateNumber
-    const getTimeFromDiv = event.target.closest('.table-sections__line').dataset.lineNumber
+    const getYear = event.target.dataset.yearNumber
+    const getMonth = event.target.dataset.monthNumber
+    const getDay = event.target.dataset.dateNumber
+    const getTime = event.target.closest('.table-sections__line').dataset.lineNumber
 
-    let dateNow = new Date();
-    let dayNow = getDayFromDiv;
-    dayNow < 10 ? dayNow = `0${dayNow}` : dayNow = dayNow;
-    start.value = dateNow.getFullYear() + '-' + dateNow.getMonth() + "-" + dayNow;
+    startDate.value = getYear + '-' + check(getMonth) + "-" + check(getDay);
+    endDate.value = startDate.value
+    startTime.value = `${check(getTime-1)+':00'}`
+    endTime.value = `${check(getTime)+':00'}`
 
-    // const getDayDate = event.target.classList.contains('sector__seat');
-    // const getDateFromDiv
-    let a = dateNow.getFullYear() + '-' + dateNow.getMonth() + "-" + dayNow;
-
-    console.log('date:' + getDayFromDiv + ' ' + getTimeFromDiv)
-    console.log(a)
 }
 
 
@@ -45,7 +51,7 @@ const TimeElem = () => {
                 timeList < 10 ? setTime = `0${timeList}` : setTime = timeList;
                 resultTime.push(
                     `<option 
-            value="${setTime}:${setSec}"
+            value="${setTime}:${cell}"
             data-block-number='${timeList}'>${setTime}:${cell}</option> `)
                 setSec += 15
                 cell = setSec
