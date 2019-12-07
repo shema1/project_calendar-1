@@ -21,6 +21,7 @@ const selectDay = (event) => {
     const getDay = event.target.dataset.dateNumber
     const getTime = event.target.closest('.table-sections__line').dataset.lineNumber
 
+
     startDate.value = getYear + '-' + check(getMonth) + "-" + check(getDay);
     endDate.value = startDate.value
     startTime.value = `${check(getTime-1)+':00'}`
