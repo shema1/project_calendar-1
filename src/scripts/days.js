@@ -145,11 +145,15 @@ const getSectionBlock = () => {
 
         generateNumbersRange(1, 7 - firstDate)
             .map(sectionNumber => {
+                let daysNum = testFromFirstDate;
+                let monthsNum = monthNum;
+                let yearNum = nextYearForBlock;
                 result.push(
                     `
                 <div 
+                    id="${yearNum+'-'}${monthsNum+'-'}${check(daysNum++)}"
                     class="table-sections__section" 
-                    data-block-number='${sectionNumber + increasDataAttrib}'
+                    data-block-number='${sectionNumber + increasDataAttrib + 2}'
                     data-date-number='${testFromFirstDate++}'
                     data-month-number='${monthNum}'
                     data-year-number='${nextYearForBlock}'
