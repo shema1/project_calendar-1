@@ -151,7 +151,7 @@ const getSectionBlock = () => {
                 result.push(
                     `
                 <div 
-                    id="${yearNum+'-'}${check(monthsNum)+'-'}${check(daysNum++)}"
+                    id="${yearNum+'-'}${monthsNum+'-'}${check(daysNum++)}"
                     class="table-sections__section" 
                     data-block-number='${sectionNumber + increasDataAttrib + 2}'
                     data-date-number='${testFromFirstDate++}'
