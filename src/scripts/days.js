@@ -194,7 +194,8 @@ renderLines();
 //color current day
 const markCurrentDay = () => {
     const weekDaysElems = document.querySelectorAll('.days__numbe');
-    const currentNumberDay = new Date().getDay() - 1;
+    let currentNumberDay;
+    new Date().getDay() - 1 < 0 ? currentNumberDay = 6 : currentNumberDay = new Date().getDay() - 1;
     const findFirstDay = [...weekDaysElems].find(arg => arg.dataset.blockNumber == currentNumberDay);
     if (findFirstDay !== undefined) {
         findFirstDay.classList.add('active-day-number');
