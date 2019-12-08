@@ -6,7 +6,7 @@ const getCorrectIndent = () => {
 
     const dayOfweek = new Date().getDay() - 1;
 
-    dayOfweek == 0 ? correctIndent = 0 : correctIndent = dayOfweek;
+    dayOfweek < 0 ? correctIndent = 6 : correctIndent = dayOfweek;
 
 };
 

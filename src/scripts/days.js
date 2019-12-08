@@ -86,26 +86,34 @@ renderDays();
 
 const tableSectionsElem = document.querySelector('.table-sections');
 
+let time = 0
+const createTime = () => {
+    time++;
+    return time
+}
 
 const getSectionBlock = () => {
     let result = [];
-    let tesst = document.querySelector('.days__numbe').innerHTML;
+    let day = document.querySelector('.days__numbe').innerHTML;
+    let dayForRender = document.querySelector('.days__numbe').innerHTML;
+
     const daysNumbElems = document.querySelectorAll('.days__numbe');
     const arrWithoutFirstArg = [...daysNumbElems].splice(1);
     const findFirstDay = arrWithoutFirstArg.find(arg => arg.textContent == 1);
-
-
+    createTime()
     if (findFirstDay === undefined) {
         generateNumbersRange(1, 7)
             .map(sectionNumber => {
                 result.push(
                     `
                     <div 
+                        id="${new Date(timeNow).getFullYear()+'-'}${new Date(timeNow).getMonth() + 1+'-'}${check(dayForRender++)}"
                         class="table-sections__section" 
                         data-block-number='${sectionNumber + increasDataAttrib}'
-                        data-date-number='${tesst++}'
+                        data-date-number='${day++}'
                         data-month-number='${new Date(timeNow).getMonth() + 1}'
                         data-year-number='${new Date(timeNow).getFullYear()}'
+                        data-time-number='${time}'
                     ></div>`
                 )
             })
@@ -116,9 +124,10 @@ const getSectionBlock = () => {
                 result.push(
                     `
                 <div 
+                id="${new Date(timeNow).getFullYear()+'-'}${new Date(timeNow).getMonth() + 1+'-'}${dayForRender++}"
                     class="table-sections__section" 
-                    data-block-number='${sectionNumber + increasDataAttrib}'
-                    data-date-number='${tesst++}'
+                    data-block-number='${sectionNumber + increasDataAttrib} '
+                    data-date-number='${day++}'
                     data-month-number='${new Date(timeNow).getMonth() + 1}'
                     data-year-number='${new Date(timeNow).getFullYear()}'
                 ></div>`
@@ -153,13 +162,15 @@ const getSectionBlock = () => {
 
 
 const getSectionLines = () => {
-    const blocksString = getSectionBlock();
+    let i = 0
+    const blocksString = getSectionBlock(i);
 
     return generateNumbersRange(1, 24)
         .map(lineNumber => `
             <div 
                 class="table-sections__line" 
                 data-line-number='${lineNumber + increasDataAttrib}'
+                data-time-set='${lineNumber}'
             >${blocksString}</div>`).join('');
 };
 
@@ -194,7 +205,8 @@ renderLines();
 //color current day
 const markCurrentDay = () => {
     const weekDaysElems = document.querySelectorAll('.days__numbe');
-    const currentNumberDay = new Date().getDay() - 1;
+    let currentNumberDay;
+    new Date().getDay() - 1 < 0 ? currentNumberDay = 6 : currentNumberDay = new Date().getDay() - 1;
     const findFirstDay = [...weekDaysElems].find(arg => arg.dataset.blockNumber == currentNumberDay);
     if (findFirstDay !== undefined) {
         findFirstDay.classList.add('active-day-number');
@@ -219,6 +231,7 @@ const getNextWeek = () => {
     renderTable();
     renderLines();
     markCurrentDay();
+    renderEvents()
 };
 
 const getPrevWeek = () => {
@@ -229,6 +242,7 @@ const getPrevWeek = () => {
     renderTable();
     renderLines();
     markCurrentDay();
+    renderEvents()
 };
 
 nextArrowElem.addEventListener('click', getNextWeek);
