@@ -267,6 +267,7 @@ const getCurrentDay = () => {
     renderLines();
     setCurrentMonth();
     markCurrentDay();
+    renderEvents();
 };
 
 addButtonElem.addEventListener('click', getCurrentDay);
