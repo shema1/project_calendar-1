@@ -24,6 +24,9 @@ const renderEvents = () => {
         let result;
         hours < 1 ? result = minutes : result = minInHours;
         let zzz = document.createElement('div');
+        zzz.setAttribute("data-id-number", `${elem.id}`);
+        zzz.setAttribute("data-time-ivent", `${hours}`);
+        zzz.setAttribute("data-id-parent", `${selector}`);
         zzz.className = 'event';
         zzz.id = `${elem.id}`;
         zzz.style.top = `${result}px`;
@@ -54,6 +57,7 @@ const renderEvents = () => {
     } else {
         test.append(testRend[testRend.length - 1]);
     };
+    // console.log(testRend);
 };
 
 renderEvents();

@@ -114,7 +114,7 @@ const getSectionBlock = () => {
                         data-month-number='${new Date(timeNow).getMonth() + 1}'
                         data-year-number='${new Date(timeNow).getFullYear()}'
                         data-time-number='${time}'
-                    ></div>`
+                        ></div>`
                 )
             })
     } else {
@@ -235,7 +235,8 @@ const getNextWeek = () => {
     renderTable();
     renderLines();
     markCurrentDay();
-    renderEvents()
+    renderEvents();
+    getEventsByClick();
 };
 
 const getPrevWeek = () => {
@@ -246,7 +247,8 @@ const getPrevWeek = () => {
     renderTable();
     renderLines();
     markCurrentDay();
-    renderEvents()
+    renderEvents();
+    getEventsByClick();
 };
 
 nextArrowElem.addEventListener('click', getNextWeek);
@@ -255,17 +257,17 @@ prevArrowElem.addEventListener('click', getPrevWeek);
 
 //today button
 
-const addButtonElem = document.querySelector('.today-button');
+// const addButtonElem = document.querySelector('.today-button');
 
-const getCurrentDay = () => {
-    timeNow = new Date();
-    getMonday();
-    increasDataAttrib = 0;
-    renderDays();
-    renderTable();
-    renderLines();
-    setCurrentMonth();
-    markCurrentDay();
-};
+// const getCurrentDay = () => {
+//     timeNow = new Date();
+//     getMonday();
+//     increasDataAttrib = 0;
+//     renderDays();
+//     renderTable();
+//     renderLines();
+//     setCurrentMonth();
+//     markCurrentDay();
+// };
 
-addButtonElem.addEventListener('click', getCurrentDay);
+// addButtonElem.addEventListener('click', getCurrentDay);
