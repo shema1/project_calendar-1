@@ -9,6 +9,7 @@ const deleteEvent = (event) => {
     events[selectedId] = {}
     delHtml.parentNode.removeChild(delHtml);
 
+    close(event)
 }
 
 

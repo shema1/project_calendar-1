@@ -172,6 +172,7 @@ const getSectionLines = () => {
     return generateNumbersRange(1, 24)
         .map(lineNumber => `
             <div 
+            id="${check(lineNumber-1)}"
                 class="table-sections__line" 
                 data-line-number='${lineNumber + increasDataAttrib}'
                 data-time-set='${lineNumber}'
