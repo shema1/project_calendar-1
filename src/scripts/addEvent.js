@@ -17,6 +17,12 @@ const addEvent = (event) => {
     let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
 
+
+    let strat = new Date(inputStartDate.value + 'T' + inputStartTime.value);
+    let end = new Date(inputEndDate.value + 'T' + inputEndTime.value)
+    if (!duration(strat, end)) return;
+    if (!errorDate(strat.getTime(), end.getTime())) return;
+
     events.push({
         id: events.length,
         name: inputName.value,
