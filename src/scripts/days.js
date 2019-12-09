@@ -220,6 +220,16 @@ const markCurrentDay = () => {
 
 markCurrentDay();
 
+const checkCurrentDay = () => {
+    const current = document.querySelector('.active-day-number');
+    const redlineElem = document.querySelector('.redline ');
+    if (current) {
+        redlineElem.style.display = 'flex';
+        moveRedline();
+    } else {
+        redlineElem.style.display = 'none';
+    };
+};
 
 
 
@@ -236,7 +246,8 @@ const getNextWeek = () => {
     renderTable();
     renderLines();
     markCurrentDay();
-    renderEvents()
+    renderEvents();
+    checkCurrentDay();
 };
 
 const getPrevWeek = () => {
@@ -247,7 +258,8 @@ const getPrevWeek = () => {
     renderTable();
     renderLines();
     markCurrentDay();
-    renderEvents()
+    renderEvents();
+    checkCurrentDay();
 };
 
 nextArrowElem.addEventListener('click', getNextWeek);
@@ -268,6 +280,7 @@ const getCurrentDay = () => {
     setCurrentMonth();
     markCurrentDay();
     renderEvents();
+    checkCurrentDay();
 };
 
 addButtonElem.addEventListener('click', getCurrentDay);

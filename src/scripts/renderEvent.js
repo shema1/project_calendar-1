@@ -3,7 +3,6 @@ let end;
 let selector;
 let test;
 let parent;
-let testRend = [];
 
 
 const renderEvents = () => {
@@ -42,7 +41,6 @@ const renderEvents = () => {
         ${elem.description}
         </span>
         </div>`
-        testRend.push(aaa);
         test.innerHTML = aaa;
     })
 }
