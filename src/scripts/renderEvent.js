@@ -18,13 +18,16 @@ const renderEvents = () => {
             getHours = `0${now.getHours()}`;
         };
         parent = document.querySelector(`[id='${getHours}']`);
-        // console.log(now.getHours());
         if (parent === null) return;
         test = parent.querySelector(`[id='${selector}']`);
         if (test === null) {
             console.log('The event cannot be displayed at a specified interval')
             return;
         };
+        let bgnEvent = new Date(now);
+        let endEvent = new Date(end);
+        let diffEndBgn = (endEvent - bgnEvent) / 1000 / 60;
+        console.log(diffEndBgn);
 
         let hours = now.getHours();
         let minutes = now.getMinutes();
@@ -38,8 +41,8 @@ const renderEvents = () => {
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
         data-id-parent='${selector}'
-        style=
-        height:${height}px;"
+        style="
+        height:${diffEndBgn}px; top:${now.getMinutes()}px;"
         >
         <span class="event__name">
         ${elem.name}
