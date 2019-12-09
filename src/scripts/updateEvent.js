@@ -19,6 +19,7 @@ const updateEvent = (event) => {
     console.log(parent)
 
     //selectedElem from popup.js
+
     console.log(events[1])
     selectedElem.name = inputName.value
     selectedElem.startDateEvent = startDate.value + 'T' + startTime.value;
