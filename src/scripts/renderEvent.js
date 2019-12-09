@@ -7,8 +7,7 @@ let testRend = [];
 
 
 const renderEvents = () => {
-    console.log('work')
-    let arrEvents = [];
+
     events.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`)
@@ -48,4 +47,4 @@ const renderEvents = () => {
     })
 }
 
-renderEvents()
+renderEvents();

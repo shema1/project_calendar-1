@@ -40,8 +40,8 @@ const selectDay = (event) => {
         let startEventTime = new Date(events[getId].startDateEvent)
         let endEventTime = new Date(events[getId].endDateEvent)
         let year = startEventTime.getFullYear();
-        let months = check(startEventTime.getMonth())
-        let day = check(startEventTime.getDay())
+        let months = check(startEventTime.getMonth() + 1)
+        let day = check(startEventTime.getDate())
         let valueStratHour = check(startEventTime.getHours())
         let valueStartMin = check(startEventTime.getMinutes())
         let valueEndHour = check(endEventTime.getHours())
