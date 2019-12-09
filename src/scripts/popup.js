@@ -37,7 +37,6 @@ const selectDay = (event) => {
         const getId = event.target.dataset.idNumber;
         // console.log(events[getId])
         let eventObj = events.find(elem => elem.id == getId)
-
         let startEventTime = new Date(events[getId].startDateEvent)
         let endEventTime = new Date(events[getId].endDateEvent)
         let year = startEventTime.getFullYear();

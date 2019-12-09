@@ -20,6 +20,7 @@ const renderEvents = () => {
             console.log('The event cannot be displayed at a specified interval')
             return
         }
+
         let hours = now.getHours();
         let minutes = now.getMinutes();
         let minInHours = now.getHours() * 60 + minutes;
@@ -31,6 +32,7 @@ const renderEvents = () => {
         let aaa = `<div id='${elem.id}' class="event" 
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
+        data-id-parent='${selector}'
         style=
         height:${height}px;"
         >
@@ -41,10 +43,9 @@ const renderEvents = () => {
         ${elem.description}
         </span>
         </div>`
-        test.innerHTML = aaa
+        testRend.push(aaa);
+        test.innerHTML = aaa;
     })
 }
-
-
 
 renderEvents()
