@@ -27,7 +27,6 @@ const renderEvents = () => {
         let bgnEvent = new Date(now);
         let endEvent = new Date(end);
         let diffEndBgn = (endEvent - bgnEvent) / 1000 / 60;
-        console.log(diffEndBgn);
 
         let hours = now.getHours();
         let minutes = now.getMinutes();
@@ -41,6 +40,7 @@ const renderEvents = () => {
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
         data-id-parent='${selector}'
+        data-transfer-event='${elem.transfer}'
         style="
         height:${diffEndBgn}px; top:${now.getMinutes()}px;"
         >
@@ -54,7 +54,6 @@ const renderEvents = () => {
         testRend.push(aaa);
         test.innerHTML = aaa;
     })
-    console.log(new Date('2019-12-12T02:00').getHours());
 }
 
 renderEvents();

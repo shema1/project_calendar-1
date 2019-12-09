@@ -17,14 +17,36 @@ const addEvent = (event) => {
     let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
 
-    events.push({
-        id: events.length,
-        name: inputName.value,
-        createDate: new Date(),
-        startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
-        endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
-        description: inputDescription.value
-    })
+    if (inputStartTime.value > inputEndTime.value) {
+        events.push({
+            id: events.length,
+            name: inputName.value,
+            createDate: new Date(),
+            startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
+            endDateEvent: inputStartDate.value + 'T' + '24:00',
+            description: inputDescription.value,
+            transfer: 'main',
+        });
+        events.push({
+            id: events.length,
+            name: inputName.value,
+            createDate: new Date(),
+            startDateEvent: inputEndDate.value + 'T' + '00:00',
+            endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
+            description: inputDescription.value,
+            transfer: 'additional',
+        });
+    } else {
+        events.push({
+            id: events.length,
+            name: inputName.value,
+            createDate: new Date(),
+            startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
+            endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
+            description: inputDescription.value,
+        })
+    }
+
 
     inputName.value = '';
     inputDescription.value = '';
