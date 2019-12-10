@@ -14,12 +14,24 @@ const errorDate = (start, end) => {
 
 
 const duration = (start, end) => {
-    console.log(start.getHours());
-    console.log(end.getHours())
-    if (end - start > 6) {
+
+    if (end.getHours() - start.getHours() > 6) {
+
         alert('You cannot create an event longer than 6 hours')
         return false
     }
     return true;
+
+}
+
+const checkForDelete = (start) => {
+    const now = new Date()
+    let min15InMc = 900000;
+
+    if (start - now.getTime() < min15InMc) {
+        alert('you cannot delete/update event 15 minutes before the start')
+        return false
+    }
+    return true
 
 }
