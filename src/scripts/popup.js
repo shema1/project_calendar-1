@@ -31,11 +31,24 @@ const selectDay = (event) => {
         startTime.value = `${check(getTime-1)+':00'}`
         endTime.value = `${check(getTime)+':00'}`
         description.value = ''
+        console.log('work')
+        return
+    }
+    if (event.target.classList.contains("add-event")) {
+
+        let dateNow = new Date();
+        console.log('work')
+        inputName.value = '';
+        startDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth()) + "-" + check(dateNow.getDate());
+        endDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth()) + "-" + check(dateNow.getDate())
+        startTime.value = `${check(dateNow.getHours())+':00'}`
+        endTime.value = `${check(dateNow.getHours()+1)+':00'}`
+        description.value = ''
+
     } else {
         btnUpdate.classList.add("update")
 
         const getId = event.target.dataset.idNumber;
-        // console.log(events[getId])
         let eventObj = events.find(elem => elem.id == getId)
         let startEventTime = new Date(events[getId].startDateEvent)
         let endEventTime = new Date(events[getId].endDateEvent)

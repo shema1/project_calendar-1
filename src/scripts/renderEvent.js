@@ -28,6 +28,7 @@ const renderEvents = () => {
         let endEvent = new Date(end);
         let diffEndBgn = (endEvent - bgnEvent) / 1000 / 60;
 
+
         let hours = now.getHours();
         let minutes = now.getMinutes();
         let minInHours = now.getHours() * 60 + minutes;
@@ -54,6 +55,7 @@ const renderEvents = () => {
         testRend.push(aaa);
         test.innerHTML = aaa;
     })
+
 }
 
 renderEvents();

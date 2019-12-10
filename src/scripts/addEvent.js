@@ -17,6 +17,7 @@ const addEvent = (event) => {
     let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
 
+
     if (inputStartTime.value > inputEndTime.value) {
         events.push({
             id: events.length,
@@ -46,6 +47,7 @@ const addEvent = (event) => {
             description: inputDescription.value,
         })
     }
+
 
 
     inputName.value = '';
