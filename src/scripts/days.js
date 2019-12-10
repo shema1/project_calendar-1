@@ -1,5 +1,5 @@
 const daysElem = document.querySelector('.days');
-const nameDays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПН', 'СБ'];
+const nameDays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 
 let increasDataAttrib = 0;
 let timeNow = new Date();

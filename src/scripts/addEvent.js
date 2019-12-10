@@ -18,19 +18,37 @@ const addEvent = (event) => {
     let inputDescription = document.querySelector('.description-input');
 
 
-    let strat = new Date(inputStartDate.value + 'T' + inputStartTime.value);
-    let end = new Date(inputEndDate.value + 'T' + inputEndTime.value)
-    if (!duration(strat, end)) return;
-    if (!errorDate(strat.getTime(), end.getTime())) return;
+    if (inputStartTime.value > inputEndTime.value) {
+        events.push({
+            id: events.length,
+            name: inputName.value,
+            createDate: new Date(),
+            startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
+            endDateEvent: inputStartDate.value + 'T' + '24:00',
+            description: inputDescription.value,
+            transfer: 'main',
+        });
+        events.push({
+            id: events.length,
+            name: inputName.value,
+            createDate: new Date(),
+            startDateEvent: inputEndDate.value + 'T' + '00:00',
+            endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
+            description: inputDescription.value,
+            transfer: 'additional',
+        });
+    } else {
+        events.push({
+            id: events.length,
+            name: inputName.value,
+            createDate: new Date(),
+            startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
+            endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
+            description: inputDescription.value,
+        })
+    }
 
-    events.push({
-        id: events.length,
-        name: inputName.value,
-        createDate: new Date(),
-        startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
-        endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
-        description: inputDescription.value
-    })
+
 
     inputName.value = '';
     inputDescription.value = '';

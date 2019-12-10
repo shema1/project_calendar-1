@@ -41,6 +41,7 @@ const renderEvents = () => {
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
         data-id-parent='${selector}'
+        data-transfer-event='${elem.transfer}'
         style="
         height:${diffEndBgn}px; top:${now.getMinutes()}px;"
         >
