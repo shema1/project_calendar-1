@@ -31,7 +31,6 @@ const selectDay = (event) => {
         startTime.value = `${check(getTime-1)+':00'}`
         endTime.value = `${check(getTime)+':00'}`
         description.value = ''
-        console.log('work')
         return
     }
     if (event.target.classList.contains("add-event")) {
