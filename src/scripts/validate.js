@@ -21,11 +21,14 @@ const duration = (start, end) => {
 
 }
 
-const checkForDelete = (start) => {
+const checkForUpdate = (start) => {
     const now = new Date()
     let min15InMc = 900000;
+    console.log(start - now)
 
+    if (start - now < 0) return true
     if (start - now.getTime() < min15InMc) {
+        console.log(start - now.getTime())
         alert('you cannot delete/update event 15 minutes before the start')
         return false
     }
@@ -46,34 +49,26 @@ const checkEvent = () => {
     let newEventStart = new Date(startDate.value + 'T' + startTime.value)
     let newEventEnd = new Date(endDate.value + 'T' + endTime.value)
 
-    // let selected = events.filter(elem => console.log(elem.startDateEvent + " a " + startDate.value + 'T' + startTime.value))
-    let selected = events.filter(elem => elem.endDateEvent === startDate.value + 'T' + startTime.value)
-    console.log(selected)
+
 
     for (let i = 0; i < events.length - 1; i++) {
         let eventStart = new Date(events[i].startDateEvent);
         let eventEnd = new Date(events[i].endDateEvent);
 
         if (startDate.value + 'T' + startTime.value == events[i].startDateEvent) {
-            alert('two events cannot intersect')
-            console.log(newEventEnd > eventStart)
+            if (events[i].id == selectedId) return true
+            alert('two events cannot intersect 1')
             return false
 
         }
-        console.log(newEventEnd > eventStart)
 
         if (newEventStart > eventStart && newEventStart < eventEnd) {
-            console.log(newEventEnd.getTime());
-            console.log(eventStart.getTime());
-            console.log(newEventEnd.getTime() > eventStart.getTime())
-
-
-            alert('two events cannot intersect')
+            if (events[i].id == selectedId) return true
+            alert('two events cannot intersect 2')
             return false
         }
 
     }
-
 
     let closestBeginLeft;
     let closestBeginRight;
@@ -118,12 +113,12 @@ const checkEvent = () => {
     console.log(closestEndRight);
     if (popupBegin >= closestEndLeft && popupBegin <= closestBeginLeft) {
 
-        alert('two events cannot intersect')
+        alert('two events cannot intersect 3')
         return false
     };
     if (popupEnd >= closestBeginRight && popupEnd <= closestEndRight) {
 
-        alert('two events cannot intersect')
+        alert('two events cannot intersect 4')
         return false
     };
     return true

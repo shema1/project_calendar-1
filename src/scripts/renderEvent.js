@@ -37,7 +37,7 @@ const renderEvents = () => {
         let result;
         hours < 1 ? result = minutes : result = minInHours;
 
-        let aaa = `<div id='${elem.id}' class="event" 
+        let divElem = `<div id='${elem.id}' class="event" 
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
         data-id-parent='${selector}'
@@ -52,8 +52,8 @@ const renderEvents = () => {
         ${elem.description}
         </span>
         </div>`
-        testRend.push(aaa);
-        test.innerHTML = aaa;
+        testRend.push(divElem);
+        test.innerHTML = divElem;
     })
 
 }

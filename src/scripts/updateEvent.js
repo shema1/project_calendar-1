@@ -14,10 +14,9 @@ const updateEvent = (event) => {
     let end = new Date(endDate.value + 'T' + endTime.value)
     if (!duration(strat, end)) return;
     if (!errorDate(strat.getTime(), end.getTime())) return;
-    if (!checkForDelete(strat.getTime())) return;
+    if (!checkForUpdate(strat.getTime())) return;
     if (!checkEvent()) return;
-    // if (!checkEvent(startDate.value + 'T' + startTime.value, endDate.value + 'T' + endTime.value)) return;
-    console.log('dont work')
+
     deleteAll()
 
     selectedElem.name = inputName.value
