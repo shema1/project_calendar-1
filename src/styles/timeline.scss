@@ -2,8 +2,8 @@
     display: flex;
     position: absolute;
     align-items: center;
-    // left: 70px;
     width: 27vh;
+    z-index: 10;
     &__ball {
         position: relative;
         bottom: 6px;

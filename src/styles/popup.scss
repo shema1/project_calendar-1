@@ -67,7 +67,7 @@
 .submit-button {
     width: 150px;
     height: 40px;
-    background-color: #1b73e8;
+    background-color: $btn-save-color;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -75,12 +75,12 @@
 
 .start-time,
 .start-time {
-    width: 60px;
+    width: 65px;
 }
 
 .end-date,
 .start-date {
-    width: 130px;
+    width: 140px;
 }
 
 .control {
