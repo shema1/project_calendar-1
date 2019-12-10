@@ -1,8 +1,5 @@
 const popupDel = document.querySelector(`.delete-ivent`);
 
-
-
-
 const deleteEvent = (event) => {
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')

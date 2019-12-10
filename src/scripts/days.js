@@ -8,7 +8,7 @@ const getMonday = () => {
     while (timeNow.getDay() !== 1) {
         timeNow.setDate(timeNow.getDate() - 1);
     };
-};
+}
 getMonday();
 
 //current month
@@ -26,8 +26,8 @@ const setCurrentMonth = () => {
 
     for (let arg of arrWithoutFirstArg) {
         if (arg.textContent == 1) {
-            checkOneMonthOnWeek = true;
-        }
+            checkOneMonthOnWeek = true
+        };
     };
 
     let incr = 0;
@@ -40,15 +40,15 @@ const setCurrentMonth = () => {
                 yearForBlockElem = timeNow.getFullYear() + +incr;
             } else {
                 result = months[new Date(timeNow).getMonth() + 1];
-            }
-        }
+            };
+        };
         return result;
     };
 
     let currentMonth = months[new Date(timeNow).getMonth()];
     monthElem.textContent = `${currentMonth} - ${setPreviosMonth()} ${timeNow.getFullYear() + +incr}`;
     monthForPopup = new Date(timeNow).getMonth() + 1;
-};
+}
 
 setCurrentMonth();
 
@@ -69,27 +69,25 @@ const getDays = () => {
                         class="days__numbe" 
                         data-block-number='${sectionNumber + increasDataAttrib}'
                     >${new Date(newDay).getDate()}</div>
-                </div>`)
+                </div>`);
         });
-
     return result.join('');
-};
+}
 
 const renderDays = () => {
     daysElem.innerHTML = getDays();
-};
+}
 
 renderDays();
-
 
 //tables
 
 const tableSectionsElem = document.querySelector('.table-sections');
 
-let time = 0
+let time = 0;
 const createTime = () => {
     time++;
-    return time
+    return time;
 }
 
 const getSectionBlock = () => {
@@ -100,7 +98,7 @@ const getSectionBlock = () => {
     const daysNumbElems = document.querySelectorAll('.days__numbe');
     const arrWithoutFirstArg = [...daysNumbElems].splice(1);
     const findFirstDay = arrWithoutFirstArg.find(arg => arg.textContent == 1);
-    createTime()
+    createTime();
     if (findFirstDay === undefined) {
         generateNumbersRange(1, 7)
             .map(sectionNumber => {
@@ -115,8 +113,8 @@ const getSectionBlock = () => {
                         data-year-number='${new Date(timeNow).getFullYear()}'
                         data-time-number='${time}'
                     ></div>`
-                )
-            })
+                );
+            });
     } else {
         const firstDate = arrWithoutFirstArg.indexOf(findFirstDay) + 1;
         generateNumbersRange(1, firstDate)
@@ -131,10 +129,10 @@ const getSectionBlock = () => {
                     data-month-number='${new Date(timeNow).getMonth() + 1}'
                     data-year-number='${new Date(timeNow).getFullYear()}'
                 ></div>`
-                )
+                );
             });
 
-        let testFromFirstDate = document.querySelectorAll('.days__numbe')[firstDate].textContent;
+        let sectionElemFromFirstDate = document.querySelectorAll('.days__numbe')[firstDate].textContent;
 
         let monthNum = new Date(timeNow).getMonth() + 2;
         if (new Date(timeNow).getMonth() + 2 >= 12) {
@@ -145,7 +143,7 @@ const getSectionBlock = () => {
 
         generateNumbersRange(1, 7 - firstDate)
             .map(sectionNumber => {
-                let daysNum = testFromFirstDate;
+                let daysNum = sectionElemFromFirstDate;
                 let monthsNum = monthNum;
                 let yearNum = nextYearForBlock;
                 result.push(
@@ -154,19 +152,19 @@ const getSectionBlock = () => {
                     id="${yearNum+'-'}${monthsNum+'-'}${check(daysNum++)}"
                     class="table-sections__section" 
                     data-block-number='${sectionNumber + increasDataAttrib + 2}'
-                    data-date-number='${testFromFirstDate++}'
+                    data-date-number='${sectionElemFromFirstDate++}'
                     data-month-number='${monthNum}'
                     data-year-number='${nextYearForBlock}'
                 ></div>`
-                )
+                );
             });
-    }
+    };
     return result.join('');
 }
 
 
 const getSectionLines = () => {
-    let i = 0
+    let i = 0;
     const blocksString = getSectionBlock(i);
 
     return generateNumbersRange(1, 24)
@@ -177,7 +175,7 @@ const getSectionLines = () => {
                 data-line-number='${lineNumber + increasDataAttrib}'
                 data-time-set='${lineNumber}'
             >${blocksString}</div>`).join('');
-};
+}
 
 
 
@@ -185,8 +183,7 @@ const renderTable = () => {
     tableSectionsElem.innerHTML = getSectionLines();
 };
 
-renderTable();
-
+renderTable()
 
 //tableline
 
@@ -203,7 +200,7 @@ const getLinesBlocks = () => generateNumbersRange(1, 24)
 
 const renderLines = () => {
     tableLinesElem.innerHTML = getLinesBlocks();
-};
+}
 
 renderLines();
 
@@ -216,7 +213,7 @@ const markCurrentDay = () => {
     if (findFirstDay !== undefined) {
         findFirstDay.classList.add('active-day-number');
     };
-};
+}
 
 markCurrentDay();
 
@@ -229,9 +226,7 @@ const checkCurrentDay = () => {
     } else {
         redlineElem.style.display = 'none';
     };
-};
-
-
+}
 
 //arrows
 
@@ -248,7 +243,7 @@ const getNextWeek = () => {
     markCurrentDay();
     renderEvents();
     checkCurrentDay();
-};
+}
 
 const getPrevWeek = () => {
     timeNow.setDate(timeNow.getDate() - 7);
@@ -260,7 +255,7 @@ const getPrevWeek = () => {
     markCurrentDay();
     renderEvents();
     checkCurrentDay();
-};
+}
 
 nextArrowElem.addEventListener('click', getNextWeek);
 prevArrowElem.addEventListener('click', getPrevWeek);
@@ -281,6 +276,6 @@ const getCurrentDay = () => {
     markCurrentDay();
     renderEvents();
     checkCurrentDay();
-};
+}
 
 addButtonElem.addEventListener('click', getCurrentDay);

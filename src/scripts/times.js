@@ -1,6 +1,4 @@
 const tableTimesElem = document.querySelector('.times');
-
-
 const getTimesBlocks = () => {
     const result = [];
 
@@ -14,10 +12,9 @@ const getTimesBlocks = () => {
                     data-block-number='${blockNumber}'
                     ><span class="clock">${setTime}:00</span></div>`)
         });
-
     return result.join('');
-};
+}
 
-const renderTableTimes = () => tableTimesElem.innerHTML = getTimesBlocks();
+const renderTableTimes = () => tableTimesElem.innerHTML = getTimesBlocks()
 
 renderTableTimes();
