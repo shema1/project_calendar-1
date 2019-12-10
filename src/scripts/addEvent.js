@@ -17,6 +17,10 @@ const addEvent = (event) => {
     let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
 
+    // console.log(checkEvent())
+    if (!checkEvent()) return
+
+    console.log('work')
 
     if (inputStartTime.value > inputEndTime.value) {
         events.push({

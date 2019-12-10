@@ -14,7 +14,8 @@ const updateEvent = (event) => {
     let end = new Date(endDate.value + 'T' + endTime.value)
     if (!duration(strat, end)) return;
     if (!errorDate(strat.getTime(), end.getTime())) return;
-    if (!checkForDelete(strat.getTime())) return;
+    if (!checkForUpdate(strat.getTime())) return;
+    if (!checkEvent()) return;
 
     deleteAll()
 

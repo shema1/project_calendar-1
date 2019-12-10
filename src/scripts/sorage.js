@@ -43,19 +43,19 @@ let events = [{
 
     {
         id: 5,
-        name: 'event 5',
+        name: 'event 6',
         createDate: '12-12-2019',
         startDateEvent: '2019-12-11T14:00',
         endDateEvent: '2019-12-11T15:00',
-        description: 'it is event 5'
+        description: 'it is event 6'
     },
     {
         id: 6,
-        name: 'event 6',
+        name: 'event 7',
         createDate: '12-12-2019',
-        startDateEvent: '2019-12-10T11:45',
+        startDateEvent: '2019-12-10T12:00',
         endDateEvent: '2019-12-10T13:00',
-        description: 'it is event 5'
+        description: 'it is event 7'
     }
 
 ];

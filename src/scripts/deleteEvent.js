@@ -1,7 +1,15 @@
 const popupDel = document.querySelector(`.delete-ivent`);
+
+
+
+
 const deleteEvent = (event) => {
+    const startDate = document.querySelector(`.start-date`);
+    const startTime = document.querySelector('.start-time')
+    let strat = new Date(startDate.value + 'T' + startTime.value);
 
     event.preventDefault();
+    if (!checkForUpdate(strat.getTime())) return;
     const delHtml = document.querySelector(`[id='${selectedId}'`);
     if (delHtml == null) alert(`you cannot delete an event that does not exist`);
 
