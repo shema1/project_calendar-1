@@ -53,7 +53,7 @@ const renderEvents = () => {
         </span>
         </div>`
         testForInterval.push(test);
-        testRend.push(aaa);
+        testRend.push(divElem);
         // test.innerHTML = aaa;
     });
     let increaser = 0;
