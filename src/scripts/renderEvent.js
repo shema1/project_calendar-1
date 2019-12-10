@@ -4,11 +4,11 @@ let selector;
 let getHours;
 let test;
 let parent;
-let testRend = [];
 
 
 const renderEvents = () => {
-
+    let testForInterval = [];
+    let testRend = [];
     events.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`);
@@ -52,10 +52,22 @@ const renderEvents = () => {
         ${elem.description}
         </span>
         </div>`
-        testRend.push(divElem);
-        test.innerHTML = divElem;
-    })
+        testForInterval.push(test);
+        testRend.push(aaa);
+        // test.innerHTML = aaa;
+    });
+    let increaser = 0;
+    const testRender = () => {
+        if (!testRend[increaser]) {
+            return
+        } else {
 
+            testForInterval[increaser].innerHTML = testRend[increaser];
+            increaser++
+        }
+    };
+    let interval = setInterval(testRender, 100);
+    setTimeout(() => { clearInterval(interval) }, 5000)
 }
 
 renderEvents();

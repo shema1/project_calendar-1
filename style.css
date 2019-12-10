@@ -187,7 +187,7 @@ header {
 .submit-button {
   width: 150px;
   height: 40px;
-  background-color: #1b73e8;
+  background-color: #1a73e8;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -195,12 +195,12 @@ header {
 
 .start-time,
 .start-time {
-  width: 60px;
+  width: 65px;
 }
 
 .end-date,
 .start-date {
-  width: 130px;
+  width: 140px;
 }
 
 .control {
@@ -260,6 +260,7 @@ header {
   position: absolute;
   align-items: center;
   width: 27vh;
+  z-index: 10;
 }
 .redline__ball {
   position: relative;
@@ -279,12 +280,44 @@ header {
 }
 
 .event {
+  display: flex;
   position: absolute;
-  width: 80%;
-  background-color: blueviolet;
+  flex-direction: column;
+  padding: 4px;
+  width: 90%;
+  background-color: #039be5;
+  border-radius: 4px;
+  border-color: #039be5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: 1s;
+  animation: show 0.5s 1;
+  animation-fill-mode: forwards;
   z-index: 10;
 }
+.event__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 11;
+}
+.event__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 12;
+}
 
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 * {
   box-sizing: border-box;
   font-family: Roboto;

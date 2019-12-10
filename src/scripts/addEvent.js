@@ -50,7 +50,7 @@ const addEvent = (event) => {
             endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
             description: inputDescription.value,
         })
-    }
+    };
 
 
 
@@ -58,13 +58,13 @@ const addEvent = (event) => {
     inputDescription.value = '';
     close(event)
     renderEvents()
-}
+};
 
 const close = (event) => {
     event.preventDefault();
     const popup = document.querySelector(`.popup`);
     popup.classList.remove('popup-on')
-}
+};
 
-btnSend.addEventListener('click', addEvent)
-btnClose.addEventListener('click', close)
+btnSend.addEventListener('click', addEvent);
+btnClose.addEventListener('click', close);
