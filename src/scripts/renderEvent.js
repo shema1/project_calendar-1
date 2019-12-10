@@ -67,7 +67,7 @@ const renderEvents = () => {
         }
     };
     let interval = setInterval(testRender, 100);
-    setTimeout(() => { clearInterval(interval) }, 4000)
+    setTimeout(() => { clearInterval(interval) }, 5000)
 }
 
 renderEvents();
