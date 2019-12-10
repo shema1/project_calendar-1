@@ -30,7 +30,6 @@ const moveRedline = () => {
     redlineElem.style.left = `${widthTableSectionElem * correctIndent + 70}px`;
 };
 
-// moveRedline();
 checkCurrentDay();
 
 

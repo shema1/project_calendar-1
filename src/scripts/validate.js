@@ -1,53 +1,45 @@
 const errorDate = (start, end) => {
 
     if (end < start) {
-        alert('error')
-        return false
-    }
-
+        alert('error');
+        return false;
+    };
     return true;
-}
-
-
+};
 
 const duration = (start, end) => {
 
     if (end.getHours() - start.getHours() > 6) {
-
-        alert('You cannot create an event longer than 6 hours')
-        return false
+        alert('You cannot create an event longer than 6 hours');
+        return false;
     }
     return true;
-
-}
+};
 
 const checkForUpdate = (start) => {
-    const now = new Date()
+    const now = new Date();
     let min15InMc = 900000;
-    console.log(start - now)
 
-    if (start - now < 0) return true
+    if (start - now < 0) return true;
     if (start - now.getTime() < min15InMc) {
-        console.log(start - now.getTime())
-        alert('you cannot delete/update event 15 minutes before the start')
-        return false
-    }
-    return true
+        alert('you cannot delete/update event 15 minutes before the start');
+        return false;
+    };
+    return true;
 
-}
-
+};
 
 const checkEvent = () => {
     let inputName = document.querySelector('.input__name');
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
     const endDate = document.querySelector(`.end-date`);
-    const endTime = document.querySelector('.end-time')
+    const endTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
 
 
-    let newEventStart = new Date(startDate.value + 'T' + startTime.value)
-    let newEventEnd = new Date(endDate.value + 'T' + endTime.value)
+    let newEventStart = new Date(startDate.value + 'T' + startTime.value);
+    let newEventEnd = new Date(endDate.value + 'T' + endTime.value);
 
 
 
@@ -56,19 +48,18 @@ const checkEvent = () => {
         let eventEnd = new Date(events[i].endDateEvent);
 
         if (startDate.value + 'T' + startTime.value == events[i].startDateEvent) {
-            if (events[i].id == selectedId) return true
-            alert('two events cannot intersect 1')
-            return false
-
-        }
+            if (events[i].id == selectedId) return true;
+            alert('two events cannot intersect 1');
+            return false;
+        };
 
         if (newEventStart > eventStart && newEventStart < eventEnd) {
             if (events[i].id == selectedId) return true
             alert('two events cannot intersect 2')
             return false
-        }
+        };
 
-    }
+    };
 
     let closestBeginLeft;
     let closestBeginRight;
@@ -105,22 +96,16 @@ const checkEvent = () => {
                 closestEndRight = currentEnd;
             }
         }
-    }
+    };
     getClosestEvent();
-    console.log(closestBeginLeft);
-    console.log(closestBeginRight);
-    console.log(closestEndLeft);
-    console.log(closestEndRight);
     if (popupBegin >= closestEndLeft && popupBegin <= closestBeginLeft) {
-
-        alert('two events cannot intersect 3')
-        return false
+        alert('two events cannot intersect 3');
+        return false;
     };
-    if (popupEnd >= closestBeginRight && popupEnd <= closestEndRight) {
+    if (popupEnd > closestBeginRight && popupEnd < closestEndRight) {
 
-        alert('two events cannot intersect 4')
-        return false
+        alert('two events cannot intersect 4');
+        return false;
     };
-    return true
-
-}
+    return true;
+};

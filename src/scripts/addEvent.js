@@ -5,10 +5,10 @@ const btnUpdateEvent = document.querySelector('.submit-button');
 const addEvent = (event) => {
     event.preventDefault();
     if (btnUpdateEvent.classList.contains("update")) {
-        updateEvent(event)
-        close(event)
-        return
-    }
+        updateEvent(event);
+        close(event);
+        return;
+    };
 
     let inputName = document.querySelector('.input__name');
     let inputStartDate = document.querySelector('.start-date');
@@ -16,11 +16,11 @@ const addEvent = (event) => {
     let inputEndDate = document.querySelector('.end-date');
     let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
+    let strat = new Date(startDate.value + 'T' + startTime.value);
+    let end = new Date(endDate.value + 'T' + endTime.value);
 
-    // console.log(checkEvent())
-    if (!checkEvent()) return
-
-    console.log('work')
+    if (!duration(strat, end)) return;
+    if (!checkEvent()) return;
 
     if (inputStartTime.value > inputEndTime.value) {
         events.push({
@@ -49,11 +49,8 @@ const addEvent = (event) => {
             startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
             endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
             description: inputDescription.value,
-        })
+        });
     };
-
-
-
     inputName.value = '';
     inputDescription.value = '';
     close(event)

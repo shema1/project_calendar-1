@@ -2,13 +2,13 @@ let now;
 let end;
 let selector;
 let getHours;
-let test;
+let sectionElem;
 let parent;
 
 
 const renderEvents = () => {
-    let testForInterval = [];
-    let testRend = [];
+    let sectionElemForInterval = [];
+    let sectionElemRend = [];
     events.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`);
@@ -19,14 +19,17 @@ const renderEvents = () => {
         };
         parent = document.querySelector(`[id='${getHours}']`);
         if (parent === null) return;
-        test = parent.querySelector(`[id='${selector}']`);
-        if (test === null) {
-            console.log('The event cannot be displayed at a specified interval')
+        sectionElem = parent.querySelector(`[id='${selector}']`);
+        if (sectionElem === null) {
             return;
         };
         let bgnEvent = new Date(now);
         let endEvent = new Date(end);
         let diffEndBgn = (endEvent - bgnEvent) / 1000 / 60;
+        let flexDirection = 'flex-direction:column';
+        if (diffEndBgn < 60) {
+            flexDirection = 'flex-direction:row; align-items:center; padding:0px';
+        };
 
 
         let hours = now.getHours();
@@ -37,42 +40,40 @@ const renderEvents = () => {
         let result;
         hours < 1 ? result = minutes : result = minInHours;
 
-
         let startTime = `${check(new Date(elem.startDateEvent).getHours())+':'+check(new Date(elem.startDateEvent).getMinutes())}`;
         let endTime = `${check(new Date(elem.endDateEvent).getHours())+':'+check(new Date(elem.endDateEvent).getMinutes())}`;
+
         let divElem = `<div id='${elem.id}' class="event" 
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
         data-id-parent='${selector}'
         data-transfer-event='${elem.transfer}'
         style="
-        height:${diffEndBgn}px; top:${now.getMinutes()}px;"
+        height:${diffEndBgn}px; top:${now.getMinutes()}px; ${flexDirection};"
         >
-        <span class="event__name">
+        <div class="event__name">
         ${elem.name}
-        </span>
-        <span class="event__description">
+        </div>
+        <div class="event__time">
         ${startTime} - ${endTime}
-        </span>
-        <span class="event__description">
+        </div>
+        <div class="event__description">
         ${elem.description}
-        </span>
+        </div>
         </div>`
-        testForInterval.push(test);
-        testRend.push(divElem);
-        // test.innerHTML = aaa;
+        sectionElemForInterval.push(sectionElem);
+        sectionElemRend.push(divElem);
     });
     let increaser = 0;
-    const testRender = () => {
-        if (!testRend[increaser]) {
+    const sectionElemRender = () => {
+        if (!sectionElemRend[increaser]) {
             return
         } else {
-
-            testForInterval[increaser].innerHTML = testRend[increaser];
+            sectionElemForInterval[increaser].innerHTML = sectionElemRend[increaser];
             increaser++
         }
     };
-    let interval = setInterval(testRender, 100);
+    let interval = setInterval(sectionElemRender, 100);
     setTimeout(() => { clearInterval(interval) }, 5000)
 }
 
