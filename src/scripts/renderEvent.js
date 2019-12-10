@@ -37,6 +37,9 @@ const renderEvents = () => {
         let result;
         hours < 1 ? result = minutes : result = minInHours;
 
+
+        let startTime = `${check(new Date(elem.startDateEvent).getHours())+':'+check(new Date(elem.startDateEvent).getMinutes())}`;
+        let endTime = `${check(new Date(elem.endDateEvent).getHours())+':'+check(new Date(elem.endDateEvent).getMinutes())}`;
         let divElem = `<div id='${elem.id}' class="event" 
         data-id-number='${elem.id}'
         data-time-ivent='${hours}'
@@ -47,6 +50,9 @@ const renderEvents = () => {
         >
         <span class="event__name">
         ${elem.name}
+        </span>
+        <span class="event__description">
+        ${startTime} - ${endTime}
         </span>
         <span class="event__description">
         ${elem.description}
