@@ -300,11 +300,18 @@ header {
   z-index: 10;
 }
 .event__name {
+  margin-right: 2px;
+  min-width: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 11;
 }
+.event__time {
+  display: block;
+  min-width: 100px;
+}
 .event__description {
+  margin-left: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 12;

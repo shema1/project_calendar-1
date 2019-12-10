@@ -3,5 +3,5 @@ const deleteAll = () => {
         let a = document.querySelector('.event')
         if (a == null) return
         a.parentNode.removeChild(a)
-    }
+    };
 }

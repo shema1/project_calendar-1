@@ -36,7 +36,6 @@ const selectDay = (event) => {
     if (event.target.classList.contains("add-event")) {
 
         let dateNow = new Date();
-        console.log('work')
         inputName.value = '';
         startDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth()) + "-" + check(dateNow.getDate());
         endDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth()) + "-" + check(dateNow.getDate())
