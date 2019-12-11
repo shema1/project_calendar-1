@@ -1,3 +1,6 @@
+import { check } from './utilities.js'
+import { events } from './storage.js'
+
 let now;
 let end;
 let selector;
@@ -6,7 +9,7 @@ let sectionElem;
 let parent;
 
 
-const renderEvents = () => {
+export const renderEvents = () => {
     let sectionElemForInterval = [];
     let sectionElemRend = [];
     events.map(elem => {

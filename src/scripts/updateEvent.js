@@ -1,4 +1,9 @@
-const updateEvent = (event) => {
+import { errorDate, duration, checkForUpdate, checkEvent } from './validate.js'
+import { deleteAll } from './deleteEvent.js';
+import { selectedElem } from './popup.js';
+import { renderEvents } from './renderEvent.js'
+import { close } from './utilities.js';
+export const updateEvent = (event) => {
     event.preventDefault();
 
 

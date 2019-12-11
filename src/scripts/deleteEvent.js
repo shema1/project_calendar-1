@@ -1,6 +1,10 @@
+import { events } from './storage.js';
+import { checkForUpdate } from './validate.js';
+import { selectedId } from './popup.js';
+import { close } from './utilities.js';
 const popupDel = document.querySelector(`.delete-ivent`);
 
-const deleteEvent = (event) => {
+export const deleteEvent = (event) => {
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
     let strat = new Date(startDate.value + 'T' + startTime.value);
@@ -30,5 +34,12 @@ const deleteEvent = (event) => {
     close(event);
 }
 
+export const deleteAll = () => {
+    for (let i = 0; i < events.length - 1; i++) {
+        let a = document.querySelector('.event')
+        if (a == null) return
+        a.parentNode.removeChild(a)
+    };
+}
 
 popupDel.addEventListener('click', deleteEvent)

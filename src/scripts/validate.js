@@ -1,6 +1,8 @@
+import { events } from './storage.js'
+import { selectedId } from './popup.js'
 let sixHourInMs = 21600000;
 let fifteenMinInMs = 900000;
-const errorDate = (start, end) => {
+export const errorDate = (start, end) => {
     if (end < start) {
         alert('error')
         return false
@@ -12,7 +14,7 @@ const errorDate = (start, end) => {
     return true;
 }
 
-const duration = (start, end) => {
+export const duration = (start, end) => {
     if (end.getHours() - start.getHours() > 6) {
         alert('You cannot create an event longer than 6 hours')
         return false
@@ -24,7 +26,7 @@ const duration = (start, end) => {
     return true;
 }
 
-const checkForUpdate = (start) => {
+export const checkForUpdate = (start) => {
     const now = new Date()
     if (start - now < 0) return true
     if (start - now.getTime() < fifteenMinInMs) {
@@ -34,7 +36,7 @@ const checkForUpdate = (start) => {
     return true
 }
 
-const checkEvent = () => {
+export const checkEvent = () => {
     let inputName = document.querySelector('.input__name');
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')

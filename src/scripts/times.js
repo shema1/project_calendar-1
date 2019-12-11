@@ -1,5 +1,7 @@
+import { generateNumbersRange } from './utilities.js'
+
 const tableTimesElem = document.querySelector('.times');
-const getTimesBlocks = () => {
+export const getTimesBlocks = () => {
     const result = [];
 
     generateNumbersRange(1, 23)

@@ -1,4 +1,4 @@
-let events = [{
+export let events = [{
         id: 0,
         name: 'event 1',
         createDate: '12-12-2019',
@@ -55,6 +55,13 @@ let events = [{
         createDate: '12-12-2019',
         startDateEvent: '2019-12-10T12:00',
         endDateEvent: '2019-12-10T13:00',
+        description: 'it is event 7'
+    }, {
+        id: 6,
+        name: 'event 8',
+        createDate: '12-12-2019',
+        startDateEvent: '2019-12-16T12:00',
+        endDateEvent: '2019-12-16T13:00',
         description: 'it is event 7'
     }
 
