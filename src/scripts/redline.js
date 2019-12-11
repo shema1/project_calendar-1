@@ -1,5 +1,4 @@
 const redlineElem = document.querySelector('.redline');
-
 let correctIndent;
 const getCorrectIndent = () => {
 
@@ -12,7 +11,7 @@ getCorrectIndent();
 
 
 
-const setTimeRedline = () => {
+export const setTimeRedline = () => {
     let result;
     const now = new Date();
     const hours = now.getHours();
@@ -24,13 +23,8 @@ const setTimeRedline = () => {
     return result;
 }
 
-const moveRedline = () => {
+export const moveRedline = () => {
     const widthTableSectionElem = document.querySelector('.table-sections__section').offsetWidth;
     redlineElem.style.top = `${setTimeRedline() + 163}px`;
     redlineElem.style.left = `${widthTableSectionElem * correctIndent + 70}px`;
 }
-
-checkCurrentDay();
-
-
-setInterval(checkCurrentDay, 1000)

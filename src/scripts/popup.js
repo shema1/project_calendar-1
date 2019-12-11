@@ -1,7 +1,10 @@
+import { check, generateNumbersRange } from './utilities.js'
+import { events } from './storage.js'
+
 //popup
 
-let selectedId;
-let selectedElem;
+export let selectedId;
+export let selectedElem;
 
 
 const inputName = document.querySelector(`.input__name`);
@@ -12,6 +15,7 @@ const endTime = document.querySelector('.end-time')
 const description = document.querySelector('.description-input')
 
 const btnUpdate = document.querySelector('.submit-button');
+const btnDel = document.querySelector('.delete-ivent');
 
 
 const selectDay = (event) => {
@@ -19,6 +23,7 @@ const selectDay = (event) => {
     popup.classList.add('popup-on');
     if (event.target.classList.value === 'table-sections__section') {
         btnUpdate.classList.remove("update")
+        btnDel.classList.remove("delete-ivent__on")
 
         const getYear = event.target.dataset.yearNumber
         const getMonth = event.target.dataset.monthNumber
@@ -37,15 +42,15 @@ const selectDay = (event) => {
 
         let dateNow = new Date();
         inputName.value = '';
-        startDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth()) + "-" + check(dateNow.getDate());
-        endDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth()) + "-" + check(dateNow.getDate())
+        startDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth() + 1) + "-" + check(dateNow.getDate());
+        endDate.value = dateNow.getFullYear() + '-' + check(dateNow.getMonth() + 1) + "-" + check(dateNow.getDate())
         startTime.value = `${check(dateNow.getHours())+':00'}`
         endTime.value = `${check(dateNow.getHours()+1)+':00'}`
         description.value = ''
 
     } else {
         btnUpdate.classList.add("update")
-
+        btnDel.classList.add("delete-ivent__on")
         const getId = event.target.dataset.idNumber;
         let eventObj = events.find(elem => elem.id == getId)
         let startEventTime = new Date(events[getId].startDateEvent)
@@ -102,9 +107,7 @@ const TimeElem = () => {
     return resultTime.join('');
 }
 
-const renderTimeList = () => {
+export const renderTimeList = () => {
     timeListElemStart.innerHTML = TimeElem();
     timeListElemEnd.innerHTML = TimeElem();
 }
-
-renderTimeList()

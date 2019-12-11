@@ -1,3 +1,7 @@
+import { check, generateNumbersRange } from './utilities.js'
+import { renderEvents } from './renderEvent.js'
+import { moveRedline } from './redline.js'
+
 const daysElem = document.querySelector('.days');
 const nameDays = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 
@@ -18,7 +22,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 let monthForPopup;
 let yearForBlockElem;
 
-const setCurrentMonth = () => {
+export const setCurrentMonth = () => {
     const daysNumbElems = document.querySelectorAll('.days__numbe');
 
     const arrWithoutFirstArg = [...daysNumbElems].splice(1);
@@ -54,7 +58,7 @@ setCurrentMonth();
 
 // days
 
-const getDays = () => {
+export const getDays = () => {
     let result = [];
 
     generateNumbersRange(0, 6)
@@ -74,7 +78,7 @@ const getDays = () => {
     return result.join('');
 }
 
-const renderDays = () => {
+export const renderDays = () => {
     daysElem.innerHTML = getDays();
 }
 
@@ -90,7 +94,7 @@ const createTime = () => {
     return time;
 }
 
-const getSectionBlock = () => {
+export const getSectionBlock = () => {
     let result = [];
     let day = document.querySelector('.days__numbe').innerHTML;
     let dayForRender = document.querySelector('.days__numbe').innerHTML;
@@ -163,7 +167,7 @@ const getSectionBlock = () => {
 }
 
 
-const getSectionLines = () => {
+export const getSectionLines = () => {
     let i = 0;
     const blocksString = getSectionBlock(i);
 
@@ -179,7 +183,7 @@ const getSectionLines = () => {
 
 
 
-const renderTable = () => {
+export const renderTable = () => {
     tableSectionsElem.innerHTML = getSectionLines();
 };
 
@@ -189,7 +193,7 @@ renderTable()
 
 const tableLinesElem = document.querySelector('.lines');
 
-const getLinesBlocks = () => generateNumbersRange(1, 24)
+export const getLinesBlocks = () => generateNumbersRange(1, 24)
     .map(blockNumber => `
             <div 
                 class="lines__blocks" 
@@ -198,14 +202,14 @@ const getLinesBlocks = () => generateNumbersRange(1, 24)
     .join('');
 
 
-const renderLines = () => {
+export const renderLines = () => {
     tableLinesElem.innerHTML = getLinesBlocks();
 }
 
 renderLines();
 
 //color current day
-const markCurrentDay = () => {
+export const markCurrentDay = () => {
     const weekDaysElems = document.querySelectorAll('.days__numbe');
     let currentNumberDay;
     new Date().getDay() - 1 < 0 ? currentNumberDay = 6 : currentNumberDay = new Date().getDay() - 1;
@@ -217,7 +221,7 @@ const markCurrentDay = () => {
 
 markCurrentDay();
 
-const checkCurrentDay = () => {
+export const checkCurrentDay = () => {
     const current = document.querySelector('.active-day-number');
     const redlineElem = document.querySelector('.redline ');
     if (current) {
@@ -233,7 +237,7 @@ const checkCurrentDay = () => {
 const nextArrowElem = document.querySelector('.nav-button__next');
 const prevArrowElem = document.querySelector('.nav-button__prev');
 
-const getNextWeek = () => {
+export const getNextWeek = () => {
     timeNow.setDate(timeNow.getDate() + 7);
     increasDataAttrib += 7;
     renderDays();
@@ -245,7 +249,7 @@ const getNextWeek = () => {
     checkCurrentDay();
 }
 
-const getPrevWeek = () => {
+export const getPrevWeek = () => {
     timeNow.setDate(timeNow.getDate() - 7);
     increasDataAttrib -= 7;
     renderDays();
@@ -265,7 +269,7 @@ prevArrowElem.addEventListener('click', getPrevWeek);
 
 const addButtonElem = document.querySelector('.today-button');
 
-const getCurrentDay = () => {
+export const getCurrentDay = () => {
     timeNow = new Date();
     getMonday();
     increasDataAttrib = 0;
