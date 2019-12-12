@@ -55,7 +55,9 @@ export const renderEvents = () => {
         data-id-parent='${selector}'
         data-transfer-event='${elem.transfer}'
         style="
-        height:${diffEndBgn}px; top:${now.getMinutes()}px; ${flexDirection};"
+        height:${diffEndBgn}px; 
+        top:${now.getMinutes()}px; ${flexDirection};
+        background-color:${elem.color}"
         >
         <div class="event__name" data-id-number='${elem.id}'>
         ${elem.name}

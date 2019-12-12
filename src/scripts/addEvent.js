@@ -21,6 +21,7 @@ export const addEvent = (event) => {
     let inputEndDate = document.querySelector('.end-date');
     let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
+    let selectColor = document.querySelector('.select__color')
     let strat = new Date(inputStartDate.value + 'T' + inputStartTime.value);
     let end = new Date(inputEndDate.value + 'T' + inputEndTime.value);
 
@@ -37,6 +38,7 @@ export const addEvent = (event) => {
             endDateEvent: inputStartDate.value + 'T' + '24:00',
             description: inputDescription.value,
             transfer: 'main',
+            color: selectColor.value
         });
         listEvents.push({
             id: listEvents.length,
@@ -46,6 +48,7 @@ export const addEvent = (event) => {
             endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
             description: inputDescription.value,
             transfer: 'additional',
+            color: selectColor.value
         });
         localStorage.setItem('eventss', JSON.stringify(listEvents))
     } else {
@@ -56,6 +59,7 @@ export const addEvent = (event) => {
             startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
             endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
             description: inputDescription.value,
+            color: selectColor.value
         });
         localStorage.setItem('eventss', JSON.stringify(listEvents))
     };

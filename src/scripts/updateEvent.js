@@ -13,6 +13,7 @@ export const updateEvent = (event) => {
     const endDate = document.querySelector(`.end-date`);
     const endTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
+    let selectColor = document.querySelector('.select__color')
 
     let strat = new Date(startDate.value + 'T' + startTime.value);
     let end = new Date(endDate.value + 'T' + endTime.value);
@@ -30,6 +31,7 @@ export const updateEvent = (event) => {
     selectedElem.startDateEvent = startDate.value + 'T' + startTime.value;
     selectedElem.endDateEvent = endDate.value + 'T' + endTime.value;
     selectedElem.description = inputDescription.value;
+    selectedElem.color = selectColor.value;
 
     localStorage.setItem('eventss', JSON.stringify(listEvents))
     close(event);
