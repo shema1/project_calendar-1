@@ -3,8 +3,9 @@ import { checkForUpdate } from './validate.js';
 import { selectedId } from './popup.js';
 import { close } from './utilities.js';
 const popupDel = document.querySelector(`.delete-ivent`);
-let listEvents = JSON.parse(localStorage.getItem('eventss'))
+
 export const deleteEvent = (event) => {
+    let listEvents = JSON.parse(localStorage.getItem('eventss'))
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
     let strat = new Date(startDate.value + 'T' + startTime.value);
@@ -38,6 +39,7 @@ export const deleteEvent = (event) => {
 }
 
 export const deleteAll = () => {
+    let listEvents = JSON.parse(localStorage.getItem('eventss'))
     for (let i = 0; i < listEvents.length - 1; i++) {
         let a = document.querySelector('.event')
         if (a == null) return
