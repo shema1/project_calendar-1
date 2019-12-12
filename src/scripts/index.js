@@ -1,3 +1,4 @@
+// import { events } from './storage.js'
 import { renderTable, checkCurrentDay } from './days.js'
 import { getTimesBlocks } from './times.js'
 import { renderEvents } from './renderEvent.js'

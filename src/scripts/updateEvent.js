@@ -1,12 +1,12 @@
 import { errorDate, duration, checkForUpdate, checkEvent } from './validate.js'
 import { deleteAll } from './deleteEvent.js';
-import { selectedElem } from './popup.js';
+import { selectedId } from './popup.js';
 import { renderEvents } from './renderEvent.js'
 import { close } from './utilities.js';
 export const updateEvent = (event) => {
     event.preventDefault();
 
-
+    let listEvents = JSON.parse(localStorage.getItem('eventss'))
     let inputName = document.querySelector('.input__name');
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
@@ -24,11 +24,14 @@ export const updateEvent = (event) => {
 
     deleteAll();
 
+    let selectedElem = listEvents.find(elem => elem.id == selectedId)
+
     selectedElem.name = inputName.value
     selectedElem.startDateEvent = startDate.value + 'T' + startTime.value;
     selectedElem.endDateEvent = endDate.value + 'T' + endTime.value;
     selectedElem.description = inputDescription.value;
 
+    localStorage.setItem('eventss', JSON.stringify(listEvents))
     close(event);
     renderEvents();
 }

@@ -9,10 +9,13 @@ let sectionElem;
 let parent;
 
 
+
 export const renderEvents = () => {
     let sectionElemForInterval = [];
     let sectionElemRend = [];
-    events.map(elem => {
+    // console.log(events)
+    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+    listEvents.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`);
         selector = `${now.getFullYear()+'-'}${now.getMonth()+1+'-'}${check(now.getDate())}`;

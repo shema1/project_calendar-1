@@ -14,7 +14,7 @@ export const addEvent = (event) => {
         updateEvent(event);
         return;
     };
-
+    let listEvents = JSON.parse(localStorage.getItem('eventss'))
     let inputName = document.querySelector('.input__name');
     let inputStartDate = document.querySelector('.start-date');
     let inputStartTime = document.querySelector('.start-time');
@@ -29,8 +29,8 @@ export const addEvent = (event) => {
     if (!checkEvent()) return;
 
     if (inputStartTime.value > inputEndTime.value) {
-        events.push({
-            id: events.length,
+        listEvents.push({
+            id: listEvents.length,
             name: inputName.value,
             createDate: new Date(),
             startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
@@ -38,8 +38,8 @@ export const addEvent = (event) => {
             description: inputDescription.value,
             transfer: 'main',
         });
-        events.push({
-            id: events.length,
+        listEvents.push({
+            id: listEvents.length,
             name: inputName.value,
             createDate: new Date(),
             startDateEvent: inputEndDate.value + 'T' + '00:00',
@@ -47,16 +47,19 @@ export const addEvent = (event) => {
             description: inputDescription.value,
             transfer: 'additional',
         });
+        localStorage.setItem('eventss', JSON.stringify(listEvents))
     } else {
-        events.push({
-            id: events.length,
+        listEvents.push({
+            id: listEvents.length,
             name: inputName.value,
             createDate: new Date(),
             startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
             endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
             description: inputDescription.value,
         });
+        localStorage.setItem('eventss', JSON.stringify(listEvents))
     };
+    // console.log(listEvents)
     inputName.value = '';
     inputDescription.value = '';
     close(event)

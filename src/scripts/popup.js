@@ -21,6 +21,7 @@ const btnDel = document.querySelector('.delete-ivent');
 const selectDay = (event) => {
     const popup = document.querySelector(`.popup`);
     popup.classList.add('popup-on');
+    let listEvents = JSON.parse(localStorage.getItem('eventss'))
     if (event.target.classList.value === 'table-sections__section') {
         btnUpdate.classList.remove("update")
         btnDel.classList.remove("delete-ivent__on")
@@ -52,9 +53,9 @@ const selectDay = (event) => {
         btnUpdate.classList.add("update")
         btnDel.classList.add("delete-ivent__on")
         const getId = event.target.dataset.idNumber;
-        let eventObj = events.find(elem => elem.id == getId)
-        let startEventTime = new Date(events[getId].startDateEvent)
-        let endEventTime = new Date(events[getId].endDateEvent)
+        let eventObj = listEvents.find(elem => elem.id == getId)
+        let startEventTime = new Date(listEvents[getId].startDateEvent)
+        let endEventTime = new Date(listEvents[getId].endDateEvent)
         let year = startEventTime.getFullYear();
         let months = check(startEventTime.getMonth() + 1)
         let day = check(startEventTime.getDate())
