@@ -29,6 +29,7 @@ export const addEvent = (event) => {
     if (!duration(strat, end)) return;
     if (!checkEvent()) return;
 
+
     if (inputStartTime.value > inputEndTime.value) {
         listEvents.push({
             id: listEvents.length,
@@ -38,7 +39,7 @@ export const addEvent = (event) => {
             endDateEvent: inputStartDate.value + 'T' + '24:00',
             description: inputDescription.value,
             transfer: 'main',
-            color: selectColor.value
+            color: selectColor.valu
         });
         listEvents.push({
             id: listEvents.length,
@@ -52,6 +53,7 @@ export const addEvent = (event) => {
         });
         localStorage.setItem('eventss', JSON.stringify(listEvents))
     } else {
+        console.log('work')
         listEvents.push({
             id: listEvents.length,
             name: inputName.value,

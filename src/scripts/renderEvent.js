@@ -11,10 +11,15 @@ let parent;
 
 
 export const renderEvents = () => {
+
+    let listEvents = []
+    if (!JSON.parse(localStorage.getItem('eventss'))) {
+        listEvents = localStorage.setItem('eventss', JSON.stringify([{ id: 0 }]))
+    }
     let sectionElemForInterval = [];
     let sectionElemRend = [];
-    // console.log(events)
-    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+
+    listEvents = JSON.parse(localStorage.getItem('eventss'))
     listEvents.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`);
