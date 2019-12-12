@@ -2,6 +2,9 @@ import { events } from './storage.js'
 import { selectedId } from './popup.js'
 let sixHourInMs = 21600000;
 let fifteenMinInMs = 900000;
+
+let listEvents = JSON.parse(localStorage.getItem('eventss'))
+
 export const errorDate = (start, end) => {
     if (end < start) {
         alert('error')
@@ -50,18 +53,18 @@ export const checkEvent = () => {
 
 
 
-    for (let i = 0; i < events.length - 1; i++) {
-        let eventStart = new Date(events[i].startDateEvent);
-        let eventEnd = new Date(events[i].endDateEvent);
+    for (let i = 0; i < listEvents.length - 1; i++) {
+        let eventStart = new Date(listEvents[i].startDateEvent);
+        let eventEnd = new Date(listEvents[i].endDateEvent);
 
-        if (startDate.value + 'T' + startTime.value == events[i].startDateEvent) {
-            if (events[i].id == selectedId) return true;
+        if (startDate.value + 'T' + startTime.value == listEvents[i].startDateEvent) {
+            if (listEvents[i].id == selectedId) return true;
             alert('two events cannot intersect 1');
             return false;
         };
 
         if (newEventStart > eventStart && newEventStart < eventEnd) {
-            if (events[i].id == selectedId) return true
+            if (listEvents[i].id == selectedId) return true
             alert('two events cannot intersect 2')
             return false
         };
@@ -80,7 +83,7 @@ export const checkEvent = () => {
     let currentEnd;
 
 
-    events.map(arg => {
+    listEvents.map(arg => {
         beginEv.push(
             new Date(arg.startDateEvent)
         );

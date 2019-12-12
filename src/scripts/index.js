@@ -1,3 +1,4 @@
+// import { events } from './storage.js'
 import { renderTable, checkCurrentDay } from './days.js'
 import { getTimesBlocks } from './times.js'
 import { renderEvents } from './renderEvent.js'
@@ -8,7 +9,6 @@ import { updateEvent } from './updateEvent.js'
 
 
 
-
-renderEvents()
+window.addEventListener('storage', renderEvents)
 setInterval(checkCurrentDay, 1000)
 renderTimeList()
