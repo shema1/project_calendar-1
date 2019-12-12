@@ -16,6 +16,7 @@ const description = document.querySelector('.description-input')
 
 const btnUpdate = document.querySelector('.submit-button');
 const btnDel = document.querySelector('.delete-ivent');
+let selectColor = document.querySelector('.select__color')
 
 
 const selectDay = (event) => {
@@ -70,7 +71,7 @@ const selectDay = (event) => {
         startTime.value = `${valueStratHour+':'+valueStartMin}`
         endTime.value = `${valueEndHour+':'+valueEndMin}`
         description.value = eventObj.description;
-
+        selectColor.value = eventObj.color
         return selectedElem = eventObj, selectedId = getId;
     }
 }

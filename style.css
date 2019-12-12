@@ -226,26 +226,6 @@ header {
   display: flex;
 }
 
-.select__color {
-  width: 150px;
-}
-
-.red {
-  background-color: red;
-}
-
-.gren {
-  background-color: green;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.standart {
-  background-color: #039be5;
-}
-
 .input__color {
   margin-top: 20px;
 }
