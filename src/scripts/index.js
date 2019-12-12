@@ -10,5 +10,6 @@ import { updateEvent } from './updateEvent.js'
 
 
 window.addEventListener('storage', renderEvents)
+renderEvents()
 setInterval(checkCurrentDay, 1000)
 renderTimeList()

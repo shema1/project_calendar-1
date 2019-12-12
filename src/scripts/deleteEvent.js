@@ -43,6 +43,7 @@ export const deleteAll = () => {
         if (a == null) return
         a.parentNode.removeChild(a)
     };
+    localStorage.setItem('eventss', JSON.stringify(listEvents))
 }
 
 popupDel.addEventListener('click', deleteEvent)

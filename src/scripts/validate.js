@@ -40,6 +40,7 @@ export const checkForUpdate = (start) => {
 }
 
 export const checkEvent = () => {
+    // if (!JSON.parse(localStorage.getItem('eventss')) == []) return
     let inputName = document.querySelector('.input__name');
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
