@@ -1,69 +1,78 @@
-export let events = [
-    // {
-    //     id: 0,
-    //     name: 'event 1',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-06T02:00',
-    //     endDateEvent: '2019-12-06T13:00',
-    //     description: 'it is event 1'
-    // },
+import { createEvents, getEvents, deleteEvents, baseUrl } from './eventsGateaway.js';
 
-    // {
-    //     id: 1,
-    //     name: 'event 2',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-09T15:00',
-    //     endDateEvent: '2019-12-09T17:00',
-    //     description: 'it is event 2'
-    // },
-    // {
-    //     id: 2,
-    //     name: 'event 3',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-13T15:30',
-    //     endDateEvent: '2019-12-13T18:00',
-    //     description: 'it is event 3'
-    // },
-    // {
-    //     id: 3,
-    //     name: 'event 4',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-14T14:00',
-    //     endDateEvent: '2019-12-14T15:00',
-    //     description: 'it is event 4'
-    // },
+export let events = [];
 
-    // {
-    //     id: 4,
-    //     name: 'event 5',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-11T12:00',
-    //     endDateEvent: '2019-12-11T13:00',
-    //     description: 'it is event 5'
-    // },
 
-    // {
-    //     id: 5,
-    //     name: 'event 6',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-11T14:00',
-    //     endDateEvent: '2019-12-11T15:00',
-    //     description: 'it is event 6'
-    // },
-    // {
-    //     id: 6,
-    //     name: 'event 7',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-10T12:00',
-    //     endDateEvent: '2019-12-10T13:00',
-    //     description: 'it is event 7'
-    // }, {
-    //     id: 6,
-    //     name: 'event 8',
-    //     createDate: '12-12-2019',
-    //     startDateEvent: '2019-12-16T12:00',
-    //     endDateEvent: '2019-12-16T13:00',
-    //     description: 'it is event 7'
-    // }
 
-];
+
+// const mapTasks = tasks =>
+//     tasks.map(({ _id, ...rest }) => ({...rest, id: _id }))
+
+// const getEventsList = () => {
+//     return fetch(baseUrl)
+//         .then(response => response.json())
+//         .then(tasks => mapTasks(tasks))
+// };
+
+// const setItem = (key, value) => {
+//     localStorage.setItem(key, JSON.stringify(value));
+// };
+
+// const getItem = key => {
+//     return JSON.parse(localStorage.getItem(key));
+// };
+
+// creatTask(newTask)
+// .then(() => getTasksList())
+// .then(newTasksList => {
+//     setItem('tasksList', newTasksList)
+//     renderTasks();
+// });
+
+// createEvents(one)
+//     .then(() => getTasksList())
+//     .then(newTasksList => {
+//         setItem('tasksList', newTasksList)
+//             // console.log(getItem('tasksList'))
+//     });
+
+// createEvents(two)
+//     .then(() => getTasksList())
+//     .then(newTasksList => {
+//         setItem('tasksList', newTasksList)
+//         console.log(getItem('tasksList'))
+//     });
+
+// createEvents(even)
+//     .then(() => getTasksList())
+//     .then(newTasksList => {
+//         setItem('tasksList', newTasksList)
+//         console.log(getItem('tasksList'))
+//     });
+
+
+
+// deleteTask("5e00e015e6280703e8ec0b6b")
+//     .then(() => getTasksList())
+//     .then(newTasksList => {
+//         setItem('tasksList', newTasksList)
+//         console.log(getItem('tasksList'))
+//     });
+
+
+// console.log(getItem('tasksList'))
+
+
+
+// createEvents(events)
+//     .then(data => console.log(data));
+
+// createEvents(one)
+//     .then(data => console.log(data));
+// createEvents(two)
+//     .then(data => console.log(data));
+
+
+
+// getTask()
+//     .then(data => console.log(data));

@@ -3,7 +3,7 @@ import { selectedId } from './popup.js'
 let sixHourInMs = 21600000;
 let fifteenMinInMs = 900000;
 
-let listEvents = JSON.parse(localStorage.getItem('eventss'))
+
 
 export const errorDate = (start, end) => {
     if (end < start) {
@@ -40,83 +40,71 @@ export const checkForUpdate = (start) => {
 }
 
 export const checkEvent = () => {
-    // if (!JSON.parse(localStorage.getItem('eventss')) == []) return
-    let inputName = document.querySelector('.input__name');
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
+    if (JSON.parse(localStorage.getItem('httpRequest')).length == 1) return true;
+
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
     const endDate = document.querySelector(`.end-date`);
     const endTime = document.querySelector('.end-time');
-    let inputDescription = document.querySelector('.description-input');
-
 
     let newEventStart = new Date(startDate.value + 'T' + startTime.value);
     let newEventEnd = new Date(endDate.value + 'T' + endTime.value);
 
 
 
-    for (let i = 0; i < listEvents.length - 1; i++) {
-        let eventStart = new Date(listEvents[i].startDateEvent);
-        let eventEnd = new Date(listEvents[i].endDateEvent);
+    // for (let i = 0; i < listEvents.length - 1; i++) {
+    //     let eventStart = new Date(listEvents[i].startDateEvent);
+    //     let eventEnd = new Date(listEvents[i].endDateEvent);
 
-        if (startDate.value + 'T' + startTime.value == listEvents[i].startDateEvent) {
-            if (listEvents[i].id == selectedId) return true;
-            alert('two events cannot intersect 1');
-            return false;
-        };
+    //     if (startDate.value + 'T' + startTime.value == listEvents[i].startDateEvent) {
+    //         if (listEvents[i].id == selectedId) return true;
+    //         alert('two events cannot intersect 1');
+    //         return false;
+    //     };
 
-        if (newEventStart > eventStart && newEventStart < eventEnd) {
-            if (listEvents[i].id == selectedId) return true
-            alert('two events cannot intersect 2')
-            return false
-        };
+    //     if (newEventStart > eventStart && newEventStart < eventEnd) {
+    //         if (listEvents[i].id == selectedId) return true
+    //         alert('two events cannot intersect 2')
+    //         return false
+    //     };
 
-    };
+    // };
 
-    let closestBeginLeft;
+
     let closestBeginRight;
     let closestEndLeft;
-    let closestEndRight;
     let beginEv = [];
     let endEv = [];
     let popupBegin = new Date(startDate.value + 'T' + startTime.value);
     let popupEnd = new Date(endDate.value + 'T' + endTime.value);
-    let currentBegin;
-    let currentEnd;
+    // let currentBegin;
+    // let currentEnd;
 
 
-    listEvents.map(arg => {
-        beginEv.push(
-            new Date(arg.startDateEvent)
-        );
-        endEv.push(
-            new Date(arg.endDateEvent)
-        );
-    });
-    const getClosestEvent = () => {
-        for (let i = 0; i < beginEv.length; i++) {
-            currentBegin = beginEv[i];
-            currentEnd = endEv[i];
-            if (currentBegin < popupBegin && (typeof closestBeginLeft === 'undefined' || closestBeginLeft < currentBegin)) {
-                closestBeginLeft = currentBegin;
-            } else if (currentBegin > popupBegin && (typeof closestBeginRight === 'undefined' || closestBeginRight > currentBegin)) {
-                closestBeginRight = currentBegin;
-            };
-            if (currentEnd < popupEnd && (typeof closestEndLeft === 'undefined' || closestEndLeft < currentEnd)) {
-                closestEndLeft = currentEnd;
-            } else if (currentEnd > popupEnd && (typeof closestEndRight === 'undefined' || closestEndRight > currentEnd)) {
-                closestEndRight = currentEnd;
-            }
+    for (let i = 1; i < listEvents.length; i++) {
+        if (typeof listEvents[i].startDateEvent !== undefined) {
+            beginEv.push(new Date(listEvents[i].startDateEvent).getTime())
         }
     };
-    getClosestEvent();
-    if (popupBegin >= closestEndLeft && popupBegin <= closestBeginLeft) {
-        alert('two events cannot intersect 3');
-        return false;
-    };
-    if (popupEnd > closestBeginRight && popupEnd < closestEndRight) {
 
-        alert('two events cannot intersect 4');
+    for (let i = 1; i < listEvents.length; i++) {
+        if (typeof listEvents[i].endDateEvent !== undefined) {
+            endEv.push(new Date(listEvents[i].endDateEvent).getTime())
+        }
+    };
+
+    closestBeginRight = Math.min(...beginEv.filter(v => v > popupBegin));
+    closestEndLeft = Math.max(...endEv.filter(v => v < popupEnd));
+
+    if (closestBeginRight < popupEnd) {
+        alert('You cannot come to next event until it ends');
         return false;
     };
+    if (closestEndLeft > popupBegin) {
+        alert('You cannot come to this event until the previous one has ended');
+        return false;
+    };
+
     return true;
 }

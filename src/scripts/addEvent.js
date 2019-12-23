@@ -3,10 +3,13 @@ import { events } from './storage.js'
 import { renderEvents } from './renderEvent.js';
 import { updateEvent } from './updateEvent.js';
 import { close } from './utilities.js';
+import { createEvents, getEventsList, deleteEvents } from './eventsGateaway.js';
 
 const btnSend = document.querySelector('.submit-button');
 const btnClose = document.querySelector('.close');
 const btnUpdateEvent = document.querySelector('.submit-button');
+
+const serverStatusElem = document.querySelector('.status-server');
 
 export const addEvent = (event) => {
     event.preventDefault();
@@ -14,7 +17,7 @@ export const addEvent = (event) => {
         updateEvent(event);
         return;
     };
-    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     let inputName = document.querySelector('.input__name');
     let inputStartDate = document.querySelector('.start-date');
     let inputStartTime = document.querySelector('.start-time');
@@ -31,7 +34,7 @@ export const addEvent = (event) => {
 
 
     if (inputStartTime.value > inputEndTime.value) {
-        listEvents.push({
+        const newEvent = {
             id: listEvents.length,
             name: inputName.value,
             createDate: new Date(),
@@ -39,10 +42,11 @@ export const addEvent = (event) => {
             endDateEvent: inputStartDate.value + 'T' + '24:00',
             description: inputDescription.value,
             transfer: 'main',
-            color: selectColor.valu
-        });
-        listEvents.push({
-            id: listEvents.length,
+            color: selectColor.value
+        };
+
+        const newEvent2 = {
+            id: listEvents.length + 1,
             name: inputName.value,
             createDate: new Date(),
             startDateEvent: inputEndDate.value + 'T' + '00:00',
@@ -50,11 +54,36 @@ export const addEvent = (event) => {
             description: inputDescription.value,
             transfer: 'additional',
             color: selectColor.value
-        });
-        localStorage.setItem('eventss', JSON.stringify(listEvents))
+        };
+
+        createEvents(newEvent)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                serverStatusElem.classList.remove('status-server__off');
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
+                // renderEvents();
+            });
+
+
+        createEvents(newEvent2)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                serverStatusElem.classList.remove('status-server__off');
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
+                renderEvents();
+            })
+            .catch(() => {
+                serverStatusElem.classList.add('status-server__off');
+                const localStore = JSON.parse(localStorage.getItem('httpRequest'))
+                localStore.push(newEvent);
+                localStore.push(newEvent2);
+                localStorage.setItem('httpRequest', JSON.stringify(localStore));
+                renderEvents();
+            });
+
     } else {
-        console.log('work')
-        listEvents.push({
+
+        const newEvent = {
             id: listEvents.length,
             name: inputName.value,
             createDate: new Date(),
@@ -62,14 +91,29 @@ export const addEvent = (event) => {
             endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
             description: inputDescription.value,
             color: selectColor.value
-        });
-        localStorage.setItem('eventss', JSON.stringify(listEvents))
+        };
+
+        createEvents(newEvent)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                serverStatusElem.classList.remove('status-server__off');
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
+                renderEvents();
+            })
+            .catch(() => {
+                serverStatusElem.classList.add('status-server__off');
+                const localStore = JSON.parse(localStorage.getItem('httpRequest'))
+                localStore.push(newEvent);
+                localStorage.setItem('httpRequest', JSON.stringify(localStore));
+                renderEvents();
+
+            });
     };
     // console.log(listEvents)
     inputName.value = '';
     inputDescription.value = '';
     close(event)
-    renderEvents()
+        // renderEvents(serverStatus);
 }
 
 btnSend.addEventListener('click', addEvent);

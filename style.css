@@ -12,6 +12,18 @@ header {
   align-items: center;
   margin-left: 100px;
 }
+.navigation .status-server {
+  margin-left: auto;
+  margin-right: 25px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 80% 20%, #fff 2%, green);
+  box-shadow: 60px -80px 80px rgba(0, 0, 0, 0.5) inset;
+}
+.navigation .status-server__off {
+  background: radial-gradient(circle at 80% 20%, #fff 2%, red);
+}
 
 .add-button {
   width: 130px;

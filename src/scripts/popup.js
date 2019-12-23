@@ -22,7 +22,7 @@ let selectColor = document.querySelector('.select__color')
 const selectDay = (event) => {
     const popup = document.querySelector(`.popup`);
     popup.classList.add('popup-on');
-    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     if (event.target.classList.value === 'table-sections__section') {
         btnUpdate.classList.remove("update")
         btnDel.classList.remove("delete-ivent__on")

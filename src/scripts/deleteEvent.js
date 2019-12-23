@@ -5,7 +5,7 @@ import { close } from './utilities.js';
 const popupDel = document.querySelector(`.delete-ivent`);
 
 export const deleteEvent = (event) => {
-    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
     let strat = new Date(startDate.value + 'T' + startTime.value);
@@ -21,31 +21,31 @@ export const deleteEvent = (event) => {
         listEvents[selectedId + 1] = {};
         delHtml.parentNode.removeChild(delHtml);
         delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-        localStorage.setItem('eventss', JSON.stringify(listEvents))
+        localStorage.setItem('httpRequest', JSON.stringify(listEvents))
     } else if (delHtml.getAttribute('data-transfer-event') == 'additional') {
         const delHtmlMain = document.querySelector(`[id='${+selectedId - +1}'`);
         listEvents[selectedId] = {};
         listEvents[selectedId - 1] = {};
         delHtml.parentNode.removeChild(delHtml);
         delHtmlMain.parentNode.removeChild(delHtmlMain);
-        localStorage.setItem('eventss', JSON.stringify(listEvents))
+        localStorage.setItem('httpRequest', JSON.stringify(listEvents))
     } else {
         listEvents[selectedId] = {};
         delHtml.parentNode.removeChild(delHtml);
-        localStorage.setItem('eventss', JSON.stringify(listEvents))
+        localStorage.setItem('httpRequest', JSON.stringify(listEvents))
     };
 
     close(event);
 }
 
 export const deleteAll = () => {
-    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     for (let i = 0; i < listEvents.length - 1; i++) {
         let a = document.querySelector('.event')
         if (a == null) return
         a.parentNode.removeChild(a)
     };
-    localStorage.setItem('eventss', JSON.stringify(listEvents))
+    localStorage.setItem('httpRequest', JSON.stringify(listEvents))
 }
 
 popupDel.addEventListener('click', deleteEvent)

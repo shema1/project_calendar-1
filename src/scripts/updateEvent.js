@@ -6,7 +6,7 @@ import { close } from './utilities.js';
 export const updateEvent = (event) => {
     event.preventDefault();
 
-    let listEvents = JSON.parse(localStorage.getItem('eventss'))
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     let inputName = document.querySelector('.input__name');
     const startDate = document.querySelector(`.start-date`);
     const startTime = document.querySelector('.start-time')
@@ -33,7 +33,7 @@ export const updateEvent = (event) => {
     selectedElem.description = inputDescription.value;
     selectedElem.color = selectColor.value;
 
-    localStorage.setItem('eventss', JSON.stringify(listEvents))
+    localStorage.setItem('httpRequest', JSON.stringify(listEvents))
     close(event);
     renderEvents();
 }
