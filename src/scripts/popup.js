@@ -55,8 +55,8 @@ const selectDay = (event) => {
         btnDel.classList.add("delete-ivent__on")
         const getId = event.target.dataset.idNumber;
         let eventObj = listEvents.find(elem => elem.id == getId)
-        let startEventTime = new Date(listEvents[getId].startDateEvent)
-        let endEventTime = new Date(listEvents[getId].endDateEvent)
+        let startEventTime = new Date(eventObj.startDateEvent)
+        let endEventTime = new Date(eventObj.endDateEvent)
         let year = startEventTime.getFullYear();
         let months = check(startEventTime.getMonth() + 1)
         let day = check(startEventTime.getDate())

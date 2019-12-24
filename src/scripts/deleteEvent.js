@@ -2,6 +2,8 @@ import { events } from './storage.js';
 import { checkForUpdate } from './validate.js';
 import { selectedId } from './popup.js';
 import { close } from './utilities.js';
+import { createEvents, getEventsList, deleteEvents } from './eventsGateaway.js';
+import { renderEvents } from './renderEvent.js';
 const popupDel = document.querySelector(`.delete-ivent`);
 
 export const deleteEvent = (event) => {
@@ -16,26 +18,82 @@ export const deleteEvent = (event) => {
     if (delHtml == null) alert(`you cannot delete an event that does not exist`);
 
     if (delHtml.getAttribute('data-transfer-event') == 'main') {
-        const delHtmlAdd = document.querySelector(`[id='${+selectedId + 1}'`);
-        listEvents[selectedId] = {};
-        listEvents[selectedId + 1] = {};
+        deleteEvents(selectedId)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
+            })
+            .catch(() => {
+                listEvents[selectedId] = {};
+                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+
+            })
         delHtml.parentNode.removeChild(delHtml);
-        delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-        localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+
+        let test = listEvents.indexOf(listEvents.find(elem => elem.id == selectedId))
+        let secondId = listEvents[+test + 1].id
+        console.log(secondId)
+        deleteEvents(secondId)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
+                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
+                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
+            })
+            .catch(() => {
+                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
+                listEvents[secondId] = {};
+                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
+                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+            })
+
     } else if (delHtml.getAttribute('data-transfer-event') == 'additional') {
-        const delHtmlMain = document.querySelector(`[id='${+selectedId - +1}'`);
-        listEvents[selectedId] = {};
-        listEvents[selectedId - 1] = {};
-        delHtml.parentNode.removeChild(delHtml);
-        delHtmlMain.parentNode.removeChild(delHtmlMain);
-        localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+
+        deleteEvents(selectedId)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
+            })
+            .catch(() => {
+                listEvents[selectedId] = {};
+                delHtml.parentNode.removeChild(delHtml);
+                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+            })
+        let test = listEvents.indexOf(listEvents.find(elem => elem.id == selectedId))
+        let secondId = listEvents[+test - 1].id
+        console.log(secondId)
+        deleteEvents(secondId)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
+                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
+                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
+            })
+            .catch(() => {
+                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
+                listEvents[secondId] = {};
+                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
+                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+            })
+
     } else {
-        listEvents[selectedId] = {};
-        delHtml.parentNode.removeChild(delHtml);
-        localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+        deleteEvents(selectedId)
+            .then(() => getEventsList())
+            .then(newTasksList => {
+                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
+                delHtml.parentNode.removeChild(delHtml);
+            })
+            .catch(() => {
+                let elem = listEvents.find(elem => elem.id == selectedId)
+                listEvents[listEvents.indexOf(elem)] = {}
+                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+                delHtml.parentNode.removeChild(delHtml);
+                // deleteAll()
+            })
     };
 
     close(event);
+    // renderEvents()
 }
 
 export const deleteAll = () => {

@@ -1,6 +1,7 @@
 import { check } from './utilities.js';
 import { events } from './storage.js';
 import { getEvents } from './eventsGateaway.js';
+import { getEventsList } from './eventsGateaway.js';
 
 let now;
 let end;
@@ -13,14 +14,24 @@ let parent;
 
 export const renderEvents = () => {
 
-    let listEvents = [];
+    let obj = [{ id: 0 }];
     if (!JSON.parse(localStorage.getItem('httpRequest'))) {
-        listEvents = localStorage.setItem('httpRequest', JSON.stringify([{ id: 0 }]))
+        listEvents = localStorage.setItem('httpRequest', JSON.stringify(obj))
     }
     let sectionElemForInterval = [];
     let sectionElemRend = [];
 
-    listEvents = JSON.parse(localStorage.getItem('httpRequest'))
+    getEventsList()
+        .then(tasksList => {
+            localStorage.setItem('httpRequest', JSON.stringify(tasksList))
+        })
+        // .catch(() => {
+        //     if (!JSON.parse(localStorage.getItem('httpRequest'))) {
+        //         localStorage.setItem('httpRequest', JSON.stringify(obj))
+        //     }
+        // })
+
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     listEvents.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`);
@@ -90,5 +101,3 @@ export const renderEvents = () => {
     let interval = setInterval(sectionElemRender, 50);
     setTimeout(() => { clearInterval(interval) }, 12000);
 }
-
-renderEvents();

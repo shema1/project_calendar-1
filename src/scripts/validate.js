@@ -41,6 +41,7 @@ export const checkForUpdate = (start) => {
 
 export const checkEvent = () => {
     let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
+
     if (JSON.parse(localStorage.getItem('httpRequest')).length == 1) return true;
 
     const startDate = document.querySelector(`.start-date`);
@@ -80,8 +81,7 @@ export const checkEvent = () => {
     let popupEnd = new Date(endDate.value + 'T' + endTime.value);
     // let currentBegin;
     // let currentEnd;
-
-
+    listEvents = listEvents.filter(elem => elem.id != selectedId)
     for (let i = 1; i < listEvents.length; i++) {
         if (typeof listEvents[i].startDateEvent !== undefined) {
             beginEv.push(new Date(listEvents[i].startDateEvent).getTime())
