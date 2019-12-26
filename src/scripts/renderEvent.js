@@ -10,8 +10,6 @@ let getHours;
 let sectionElem;
 let parent;
 
-
-
 export const renderEvents = () => {
 
     let obj = [{ id: 0 }];
@@ -24,15 +22,47 @@ export const renderEvents = () => {
     getEventsList()
         .then(tasksList => {
             localStorage.setItem('httpRequest', JSON.stringify(tasksList))
-        })
-        // .catch(() => {
-        //     if (!JSON.parse(localStorage.getItem('httpRequest'))) {
-        //         localStorage.setItem('httpRequest', JSON.stringify(obj))
-        //     }
-        // })
+        });
 
-    let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
+    let listEvents = JSON.parse(localStorage.getItem('httpRequest'));
+
+    let listEventsFor2Days = [];
+
     listEvents.map(elem => {
+        let hourOfBegin = new Date(elem.startDateEvent).getHours();
+        let hoursOfEnd = new Date(elem.endDateEvent).getHours();
+
+        if (hourOfBegin > hoursOfEnd) {
+            const todayEndEvent = `${new Date(elem.startDateEvent).getFullYear()}-${new Date(elem.startDateEvent).getMonth()+1}-${new Date(elem.startDateEvent).getDate()}`;
+            const tommorowBeginEvent = `${new Date(elem.endDateEvent).getFullYear()}-${new Date(elem.endDateEvent).getMonth()+1}-${new Date(elem.endDateEvent).getDate()}`;
+            const todayEvent = {
+                id: elem.id,
+                name: elem.name,
+                createDate: elem.createDate,
+                startDateEvent: elem.startDateEvent,
+                endDateEvent: todayEndEvent + 'T' + '24:00',
+                description: elem.description,
+                transfer: 'main',
+                color: elem.color,
+            };
+            listEventsFor2Days.push(todayEvent);
+            const tommorowEvent = {
+                id: elem.id,
+                name: elem.name,
+                createDate: elem.createDate,
+                startDateEvent: tommorowBeginEvent + 'T' + '00:00',
+                endDateEvent: elem.endDateEvent,
+                description: elem.description,
+                transfer: 'additional',
+                color: elem.color,
+            };
+            listEventsFor2Days.push(tommorowEvent);
+        } else {
+            listEventsFor2Days.push(elem);
+        }
+    });
+
+    listEventsFor2Days.map(elem => {
         now = new Date(`${elem.startDateEvent}`);
         end = new Date(`${elem.endDateEvent}`);
         selector = `${now.getFullYear()+'-'}${now.getMonth()+1+'-'}${check(now.getDate())}`;
@@ -53,7 +83,6 @@ export const renderEvents = () => {
         if (diffEndBgn < 60) {
             flexDirection = 'flex-direction:row; align-items:center; padding:0px';
         };
-
 
         let hours = now.getHours();
         let minutes = now.getMinutes();

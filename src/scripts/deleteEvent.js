@@ -17,83 +17,23 @@ export const deleteEvent = (event) => {
     const delHtml = document.querySelector(`[id='${selectedId}'`);
     if (delHtml == null) alert(`you cannot delete an event that does not exist`);
 
-    if (delHtml.getAttribute('data-transfer-event') == 'main') {
-        deleteEvents(selectedId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-            })
-            .catch(() => {
-                listEvents[selectedId] = {};
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
 
-            })
-        delHtml.parentNode.removeChild(delHtml);
-
-        let test = listEvents.indexOf(listEvents.find(elem => elem.id == selectedId))
-        let secondId = listEvents[+test + 1].id
-        console.log(secondId)
-        deleteEvents(secondId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-            })
-            .catch(() => {
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                listEvents[secondId] = {};
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-            })
-
-    } else if (delHtml.getAttribute('data-transfer-event') == 'additional') {
-
-        deleteEvents(selectedId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-            })
-            .catch(() => {
-                listEvents[selectedId] = {};
-                delHtml.parentNode.removeChild(delHtml);
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-            })
-        let test = listEvents.indexOf(listEvents.find(elem => elem.id == selectedId))
-        let secondId = listEvents[+test - 1].id
-        console.log(secondId)
-        deleteEvents(secondId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-            })
-            .catch(() => {
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                listEvents[secondId] = {};
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-            })
-
-    } else {
-        deleteEvents(selectedId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-                delHtml.parentNode.removeChild(delHtml);
-            })
-            .catch(() => {
-                let elem = listEvents.find(elem => elem.id == selectedId)
-                listEvents[listEvents.indexOf(elem)] = {}
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-                delHtml.parentNode.removeChild(delHtml);
-                // deleteAll()
-            })
-    };
-
+    deleteEvents(selectedId)
+        .then(() => getEventsList())
+        .then(newTasksList => {
+            localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
+            delHtml.parentNode.removeChild(delHtml);
+        })
+        .catch(() => {
+            let elem = listEvents.find(elem => elem.id == selectedId)
+            listEvents[listEvents.indexOf(elem)] = {}
+            localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+            delHtml.parentNode.removeChild(delHtml);
+            deleteAll();
+            renderEvents()
+        })
     close(event);
-    // renderEvents()
+
 }
 
 export const deleteAll = () => {
@@ -106,4 +46,4 @@ export const deleteAll = () => {
     localStorage.setItem('httpRequest', JSON.stringify(listEvents))
 }
 
-popupDel.addEventListener('click', deleteEvent)
+popupDel.addEventListener('click', deleteEvent);

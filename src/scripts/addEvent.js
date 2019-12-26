@@ -32,88 +32,34 @@ export const addEvent = (event) => {
     if (!duration(strat, end)) return;
     if (!checkEvent()) return;
 
-
-    if (inputStartTime.value > inputEndTime.value) {
-        const newEvent = {
-            id: listEvents.length,
-            name: inputName.value,
-            createDate: new Date(),
-            startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
-            endDateEvent: inputStartDate.value + 'T' + '24:00',
-            description: inputDescription.value,
-            transfer: 'main',
-            color: selectColor.value
-        };
-
-        const newEvent2 = {
-            id: listEvents.length + 1,
-            name: inputName.value,
-            createDate: new Date(),
-            startDateEvent: inputEndDate.value + 'T' + '00:00',
-            endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
-            description: inputDescription.value,
-            transfer: 'additional',
-            color: selectColor.value
-        };
-
-        createEvents(newEvent)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                serverStatusElem.classList.remove('status-server__off');
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
-                // renderEvents();
-            });
-
-
-        createEvents(newEvent2)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                serverStatusElem.classList.remove('status-server__off');
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
-                renderEvents();
-            })
-            .catch(() => {
-                serverStatusElem.classList.add('status-server__off');
-                const localStore = JSON.parse(localStorage.getItem('httpRequest'))
-                localStore.push(newEvent);
-                localStore.push(newEvent2);
-                localStorage.setItem('httpRequest', JSON.stringify(localStore));
-                renderEvents();
-            });
-
-    } else {
-
-        const newEvent = {
-            id: listEvents.length,
-            name: inputName.value,
-            createDate: new Date(),
-            startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
-            endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
-            description: inputDescription.value,
-            color: selectColor.value
-        };
-
-        createEvents(newEvent)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                serverStatusElem.classList.remove('status-server__off');
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
-                renderEvents();
-            })
-            .catch(() => {
-                serverStatusElem.classList.add('status-server__off');
-                const localStore = JSON.parse(localStorage.getItem('httpRequest'))
-                localStore.push(newEvent);
-                localStorage.setItem('httpRequest', JSON.stringify(localStore));
-                renderEvents();
-
-            });
+    const newEvent = {
+        id: listEvents.length,
+        name: inputName.value,
+        createDate: new Date(),
+        startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
+        endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
+        description: inputDescription.value,
+        color: selectColor.value
     };
-    // console.log(listEvents)
+
+    createEvents(newEvent)
+        .then(() => getEventsList())
+        .then(newTasksList => {
+            serverStatusElem.classList.remove('status-server__off');
+            localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
+            renderEvents();
+        })
+        .catch(() => {
+            serverStatusElem.classList.add('status-server__off');
+            const localStore = JSON.parse(localStorage.getItem('httpRequest'))
+            localStore.push(newEvent);
+            localStorage.setItem('httpRequest', JSON.stringify(localStore));
+            renderEvents();
+
+        });
     inputName.value = '';
     inputDescription.value = '';
     close(event)
-        // renderEvents(serverStatus);
 }
 
 btnSend.addEventListener('click', addEvent);
