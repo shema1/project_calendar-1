@@ -264,7 +264,6 @@ export const getPrevWeek = () => {
 nextArrowElem.addEventListener('click', getNextWeek);
 prevArrowElem.addEventListener('click', getPrevWeek);
 
-
 //today button
 
 const addButtonElem = document.querySelector('.today-button');

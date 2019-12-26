@@ -7,9 +7,7 @@ import { deleteEvent } from './deleteEvent.js'
 import { updateEvent } from './updateEvent.js'
 import { createEvents, getEventsList, deleteEvents } from './eventsGateaway.js';
 
-
 window.addEventListener('storage', renderEvents)
-
 
 renderEvents()
 setInterval(checkCurrentDay, 1000)

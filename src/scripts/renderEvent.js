@@ -1,6 +1,4 @@
 import { check } from './utilities.js';
-
-
 import { getEventsList } from './eventsGateaway.js';
 
 let now;
@@ -86,11 +84,11 @@ export const renderEvents = () => {
 
         let hours = now.getHours();
         let minutes = now.getMinutes();
-        let minInHours = now.getHours() * 60 + minutes;
+        // let minInHours = now.getHours() * 60 + minutes;
         let height = (end.getHours() - hours) * 60;
         minutes > 0 ? height = height - minutes : minutes;
-        let result;
-        hours < 1 ? result = minutes : result = minInHours;
+        // let result;
+        // hours < 1 ? result = minutes : result = minInHours;
 
         let startTime = `${check(new Date(elem.startDateEvent).getHours())+':'+check(new Date(elem.startDateEvent).getMinutes())}`;
         let endTime = `${check(new Date(elem.endDateEvent).getHours())+':'+check(new Date(elem.endDateEvent).getMinutes())}`;

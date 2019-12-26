@@ -2,8 +2,6 @@ import { selectedId } from './popup.js'
 let sixHourInMs = 21600000;
 let fifteenMinInMs = 900000;
 
-
-
 export const errorDate = (start, end) => {
     if (end < start) {
         alert('error')
@@ -47,9 +45,6 @@ export const checkEvent = () => {
     const startTime = document.querySelector('.start-time')
     const endDate = document.querySelector(`.end-date`);
     const endTime = document.querySelector('.end-time');
-
-    let newEventStart = new Date(startDate.value + 'T' + startTime.value);
-    let newEventEnd = new Date(endDate.value + 'T' + endTime.value);
 
     let closestBeginRight;
     let closestEndLeft;

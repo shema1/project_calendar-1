@@ -1,11 +1,9 @@
 import { check, generateNumbersRange } from './utilities.js'
 
-
 //popup
 
 export let selectedId;
 export let selectedElem;
-
 
 const inputName = document.querySelector(`.input__name`);
 const startDate = document.querySelector(`.start-date`);
@@ -16,10 +14,12 @@ const description = document.querySelector('.description-input')
 
 const btnUpdate = document.querySelector('.submit-button');
 const btnDel = document.querySelector('.delete-ivent');
-let selectColor = document.querySelector('.select__color')
+let selectColor = document.querySelector('.select__color');
 
+export let eventTarget;
 
 const selectDay = (event) => {
+    eventTarget = event.target;
     const popup = document.querySelector(`.popup`);
     popup.classList.add('popup-on');
     let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
@@ -76,11 +76,9 @@ const selectDay = (event) => {
     }
 }
 
-
 const timeListElemStart = document.querySelector('.start-time');
 const timeListElemEnd = document.querySelector('.end-time');
 const popupWindow = document.querySelector(`.table-sections`);
-
 
 const btnAdd = document.querySelector('.add-button');
 

@@ -1,9 +1,9 @@
 import { errorDate, duration, checkForUpdate, checkEvent } from './validate.js'
-import { deleteAll } from './deleteEvent.js';
 import { selectedId } from './popup.js';
 import { renderEvents } from './renderEvent.js'
 import { close } from './utilities.js';
 import { updateEvents, getEventsList, deleteEvents } from './eventsGateaway.js';
+import { eventTarget } from './popup.js';
 
 export const updateEvent = (event) => {
     event.preventDefault();
@@ -27,21 +27,10 @@ export const updateEvent = (event) => {
     if (!checkForUpdate(strat.getTime())) return;
     if (!checkEvent()) return;
 
-    let selectedElem = listEvents.find(elem => elem.id == selectedId)
-        // selectedElem = {
-        //     name: inputName.value,
-        //     startDateEvent: startDate.value + 'T' + startTime.value,
-        //     endDateEvent: endDate.value + 'T' + endTime.value,
-        //     description: inputDescription.value,
-        //     color: selectColor.value,
-        // }
-
     let form = document.querySelector('.popup__form')
     const formData = [...new FormData(form)]
         .reduce((acc, [field, value]) => ({...acc, [field]: value }), {});
 
-    let startDateUpdate = formData.startDate + 'T' + formData.startTime;
-    let endDateUpdate = formData.endData + 'T' + formData.endTime;
     const newEvent = formData;
     newEvent.startDateEvent = startDate;
     newEvent.endDateEvent = endDate;
@@ -60,8 +49,14 @@ export const updateEvent = (event) => {
                 description: inputDescription.value,
                 color: selectColor.value,
             }
-            localStorage.setItem('httpRequest', JSON.stringify(listEvents))
+            localStorage.setItem('httpRequest', JSON.stringify(listEvents));
+            if (eventTarget.classList !== 'event') {
+                const classEvent = eventTarget.closest('.event');
+                classEvent.remove();
+            } else {
+                eventTarget.remove();
+            }
+            renderEvents();
         });
-    location.reload()
     close(event);
 }
