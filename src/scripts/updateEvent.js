@@ -27,19 +27,26 @@ export const updateEvent = (event) => {
     if (!checkForUpdate(strat.getTime())) return;
     if (!checkEvent()) return;
 
-    // let selectedElem = listEvents.find(elem => elem.id == selectedId)
-
-
     let selectedElem = listEvents.find(elem => elem.id == selectedId)
-    selectedElem = {
-        name: inputName.value,
-        startDateEvent: startDate.value + 'T' + startTime.value,
-        endDateEvent: endDate.value + 'T' + endTime.value,
-        description: inputDescription.value,
-        color: selectColor.value,
-    }
+        // selectedElem = {
+        //     name: inputName.value,
+        //     startDateEvent: startDate.value + 'T' + startTime.value,
+        //     endDateEvent: endDate.value + 'T' + endTime.value,
+        //     description: inputDescription.value,
+        //     color: selectColor.value,
+        // }
 
-    updateEvents(selectedId, selectedElem)
+    let form = document.querySelector('.popup__form')
+    const formData = [...new FormData(form)]
+        .reduce((acc, [field, value]) => ({...acc, [field]: value }), {});
+
+    let startDateUpdate = formData.startDate + 'T' + formData.startTime;
+    let endDateUpdate = formData.endData + 'T' + formData.endTime;
+    const newEvent = formData;
+    newEvent.startDateEvent = startDate;
+    newEvent.endDateEvent = endDate;
+
+    updateEvents(selectedId, newEvent)
         .then(() => getEventsList())
         .then(newTasksList => {
             localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
@@ -55,49 +62,6 @@ export const updateEvent = (event) => {
             }
             localStorage.setItem('httpRequest', JSON.stringify(listEvents))
         });
-
-    const delHtml = document.querySelector(`[id='${selectedId}'`);
-
-
-    if (delHtml.getAttribute('data-transfer-event') == 'main') {
-
-        let test = listEvents.indexOf(listEvents.find(elem => elem.id == selectedId))
-        let secondId = listEvents[+test + 1].id
-        console.log(secondId)
-        deleteEvents(secondId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-            })
-            .catch(() => {
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                listEvents[secondId] = {};
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-            })
-
-    } else if (delHtml.getAttribute('data-transfer-event') == 'additional') {
-
-        let test = listEvents.indexOf(listEvents.find(elem => elem.id == selectedId))
-        let secondId = listEvents[+test - 1].id
-        console.log(secondId)
-        deleteEvents(secondId)
-            .then(() => getEventsList())
-            .then(newTasksList => {
-                localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-            })
-            .catch(() => {
-                const delHtmlAdd = document.querySelector(`[id='${secondId}'`);
-                listEvents[secondId] = {};
-                delHtmlAdd.parentNode.removeChild(delHtmlAdd);
-                localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-            })
-
-    }
     location.reload()
     close(event);
 }

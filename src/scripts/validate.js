@@ -1,4 +1,3 @@
-import { events } from './storage.js'
 import { selectedId } from './popup.js'
 let sixHourInMs = 21600000;
 let fifteenMinInMs = 900000;
@@ -52,35 +51,12 @@ export const checkEvent = () => {
     let newEventStart = new Date(startDate.value + 'T' + startTime.value);
     let newEventEnd = new Date(endDate.value + 'T' + endTime.value);
 
-
-
-    // for (let i = 0; i < listEvents.length - 1; i++) {
-    //     let eventStart = new Date(listEvents[i].startDateEvent);
-    //     let eventEnd = new Date(listEvents[i].endDateEvent);
-
-    //     if (startDate.value + 'T' + startTime.value == listEvents[i].startDateEvent) {
-    //         if (listEvents[i].id == selectedId) return true;
-    //         alert('two events cannot intersect 1');
-    //         return false;
-    //     };
-
-    //     if (newEventStart > eventStart && newEventStart < eventEnd) {
-    //         if (listEvents[i].id == selectedId) return true
-    //         alert('two events cannot intersect 2')
-    //         return false
-    //     };
-
-    // };
-
-
     let closestBeginRight;
     let closestEndLeft;
     let beginEv = [];
     let endEv = [];
     let popupBegin = new Date(startDate.value + 'T' + startTime.value);
     let popupEnd = new Date(endDate.value + 'T' + endTime.value);
-    // let currentBegin;
-    // let currentEnd;
     listEvents = listEvents.filter(elem => elem.id != selectedId)
     for (let i = 1; i < listEvents.length; i++) {
         if (typeof listEvents[i].startDateEvent !== undefined) {

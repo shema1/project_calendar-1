@@ -1,5 +1,4 @@
 import { errorDate, duration, checkEvent } from './validate.js'
-import { events } from './storage.js'
 import { renderEvents } from './renderEvent.js';
 import { updateEvent } from './updateEvent.js';
 import { close } from './utilities.js';
@@ -32,15 +31,17 @@ export const addEvent = (event) => {
     if (!duration(strat, end)) return;
     if (!checkEvent()) return;
 
-    const newEvent = {
-        id: listEvents.length,
-        name: inputName.value,
-        createDate: new Date(),
-        startDateEvent: inputStartDate.value + 'T' + inputStartTime.value,
-        endDateEvent: inputEndDate.value + 'T' + inputEndTime.value,
-        description: inputDescription.value,
-        color: selectColor.value
-    };
+    let form = document.querySelector('.popup__form')
+    const formData = [...new FormData(form)]
+        .reduce((acc, [field, value]) => ({...acc, [field]: value }), {});
+
+    let startDate = formData.startDate + 'T' + formData.startTime;
+    let endDate = formData.endData + 'T' + formData.endTime;
+    const newEvent = formData;
+    newEvent.id = listEvents.length
+    newEvent.createDate = new Date();
+    newEvent.startDateEvent = startDate;
+    newEvent.endDateEvent = endDate;
 
     createEvents(newEvent)
         .then(() => getEventsList())
@@ -55,7 +56,6 @@ export const addEvent = (event) => {
             localStore.push(newEvent);
             localStorage.setItem('httpRequest', JSON.stringify(localStore));
             renderEvents();
-
         });
     inputName.value = '';
     inputDescription.value = '';

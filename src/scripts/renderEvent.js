@@ -1,6 +1,6 @@
 import { check } from './utilities.js';
-import { events } from './storage.js';
-import { getEvents } from './eventsGateaway.js';
+
+
 import { getEventsList } from './eventsGateaway.js';
 
 let now;

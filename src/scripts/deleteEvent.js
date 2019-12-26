@@ -1,8 +1,7 @@
-import { events } from './storage.js';
 import { checkForUpdate } from './validate.js';
 import { selectedId } from './popup.js';
 import { close } from './utilities.js';
-import { createEvents, getEventsList, deleteEvents } from './eventsGateaway.js';
+import { getEventsList, deleteEvents } from './eventsGateaway.js';
 import { renderEvents } from './renderEvent.js';
 const popupDel = document.querySelector(`.delete-ivent`);
 
