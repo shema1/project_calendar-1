@@ -77,22 +77,20 @@
             <button class="close material-icons">
                 close  
             </button>
-            <input class="input__name" type="text" placeholder="Добавте назву">
+            <input class="input__name" type="text" name='name' placeholder="Добавте назву">
             <div class="date-block ">
                 <i class="Tiny material-icons">access_time</i>
-                <input class="start-date input-style" type="date" id="start" name="trip-start" value="2019-12-05" max="2020-12-05 ">
-                <select class="start-time time-list input-style " name="select "> 
-                
+                <input class="start-date input-style" type="date" id="start" name="startDate" value="2019-12-05" max="2020-12-05 ">
+                <select class="start-time time-list input-style " name="startTime"> 
                 </select>
                 <span>-</span>
-                <select class="end-time time-list input-style " name="select ">       
-                
+                <select class="end-time time-list input-style " name="endTime">       
                 </select>
-                <input class="end-date input-style " type="date" id="start " name="trip-start " value="2019-12-05 " max="2020-12-31 ">
+                <input class="end-date input-style " type="date" id="start " name="endData" value="2019-12-05 " max="2020-12-31 ">
             </div>
             <div class="input__color">
                 <span>choose a color</span>
-                <select class="select__color" name="select">       
+                <select class="select__color" name="color">       
                     <option value="#039be5" class="standart" selected>standart</option>
                     <option value="red" class="red">red</option>
                     <option value="green" class="green">green</option>
@@ -102,7 +100,7 @@
             <div class="description ">
                 <i class="Tiny material-icons ">format_align_left
                         </i>
-                <textarea class="description-input " name="text " cols="42 " rows="4 " placeholder="Добавте опис "></textarea>
+                <textarea class="description-input " name="description" cols="42 " rows="4 " placeholder="Добавте опис "></textarea>
             </div>
             <div class="control ">
                 <button class="delete-ivent ">  
