@@ -9,8 +9,6 @@ const getCorrectIndent = () => {
 
 getCorrectIndent();
 
-
-
 export const setTimeRedline = () => {
     let result;
     const now = new Date();

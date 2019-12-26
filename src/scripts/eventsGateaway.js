@@ -36,7 +36,6 @@ export const getEvents = eventsData => {
     })
 };
 
-
 export const deleteEvents = eventId => {
     return fetch(`${baseUrl}/${eventId}`, {
         method: 'DELETE',
