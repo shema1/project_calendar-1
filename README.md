@@ -11,8 +11,9 @@ This project is a calendar where you can create your own events.
 # Preview:
 https://eposha.github.io/project_calendar/
 
-#Getting Started:
+# Getting Started:
 These instructions will get you a copy of the project up and running on your local machine.
+
 # Technologies:
 For this project I have used the following technologies:
 * HTML
