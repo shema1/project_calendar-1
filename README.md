@@ -1,4 +1,4 @@
-#project_calendar
+# project_calendar
 This project is a calendar where you can create your own events.
 By default, the main screen is available in the calendar - a week is divided by days, and days by hours.
 The user can switch between weeks using the left-button icons.
