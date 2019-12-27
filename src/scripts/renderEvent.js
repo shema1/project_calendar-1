@@ -33,28 +33,14 @@ export const renderEvents = () => {
         if (hourOfBegin > hoursOfEnd) {
             const todayEndEvent = `${new Date(elem.startDateEvent).getFullYear()}-${new Date(elem.startDateEvent).getMonth()+1}-${new Date(elem.startDateEvent).getDate()}`;
             const tommorowBeginEvent = `${new Date(elem.endDateEvent).getFullYear()}-${new Date(elem.endDateEvent).getMonth()+1}-${new Date(elem.endDateEvent).getDate()}`;
-            const todayEvent = {
-                id: elem.id,
-                name: elem.name,
-                createDate: elem.createDate,
-                startDateEvent: elem.startDateEvent,
-                endDateEvent: todayEndEvent + 'T' + '24:00',
-                description: elem.description,
-                transfer: 'main',
-                color: elem.color,
-            };
-            listEventsFor2Days.push(todayEvent);
-            const tommorowEvent = {
-                id: elem.id,
-                name: elem.name,
-                createDate: elem.createDate,
-                startDateEvent: tommorowBeginEvent + 'T' + '00:00',
-                endDateEvent: elem.endDateEvent,
-                description: elem.description,
-                transfer: 'additional',
-                color: elem.color,
-            };
-            listEventsFor2Days.push(tommorowEvent);
+
+            const todayEvent = Object.assign({}, elem);
+            const tommorowEvent = Object.assign({}, elem);
+
+            Object.assign(todayEvent, { endDateEvent: `${todayEndEvent}T24:00`, transfer: 'main' });
+            Object.assign(tommorowEvent, { startDateEvent: `${tommorowBeginEvent}T00:00`, transfer: 'additional' });
+
+            listEventsFor2Days.push(todayEvent, tommorowEvent);
         } else {
             listEventsFor2Days.push(elem);
         }
@@ -84,11 +70,8 @@ export const renderEvents = () => {
 
         let hours = now.getHours();
         let minutes = now.getMinutes();
-        // let minInHours = now.getHours() * 60 + minutes;
         let height = (end.getHours() - hours) * 60;
         minutes > 0 ? height = height - minutes : minutes;
-        // let result;
-        // hours < 1 ? result = minutes : result = minInHours;
 
         let startTime = `${check(new Date(elem.startDateEvent).getHours())+':'+check(new Date(elem.startDateEvent).getMinutes())}`;
         let endTime = `${check(new Date(elem.endDateEvent).getHours())+':'+check(new Date(elem.endDateEvent).getMinutes())}`;
