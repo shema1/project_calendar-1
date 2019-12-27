@@ -1,4 +1,4 @@
-export const baseUrl = 'https://crudcrud.com/api/ad1296a4cd7245da8fd779efbbc0a3ac/events';
+export const baseUrl = 'https://crudcrud.com/api/c70d10f599b04d3ab3f7eb08dfabd73c/events';
 
 const mapTasks = events =>
     events.map(({ _id, ...rest }) => ({...rest, id: _id }))

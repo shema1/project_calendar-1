@@ -18,25 +18,20 @@ export const addEvent = (event) => {
     };
     let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
     let inputName = document.querySelector('.input__name');
-    let inputStartDate = document.querySelector('.start-date');
-    let inputStartTime = document.querySelector('.start-time');
-    let inputEndDate = document.querySelector('.end-date');
-    let inputEndTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
-    let selectColor = document.querySelector('.select__color')
-    let strat = new Date(inputStartDate.value + 'T' + inputStartTime.value);
-    let end = new Date(inputEndDate.value + 'T' + inputEndTime.value);
-
-    if (!errorDate(strat.getTime(), end.getTime())) return;
-    if (!duration(strat, end)) return;
-    if (!checkEvent()) return;
 
     let form = document.querySelector('.popup__form')
     const formData = [...new FormData(form)]
         .reduce((acc, [field, value]) => ({...acc, [field]: value }), {});
+    let startDate = new Date(formData.startDate + 'T' + formData.startTime);
+    let endDate = new Date(formData.endData + 'T' + formData.endTime);
 
-    let startDate = formData.startDate + 'T' + formData.startTime;
-    let endDate = formData.endData + 'T' + formData.endTime;
+
+    if (!errorDate(startDate.getTime(), endDate.getTime())) return;
+    if (!duration(startDate, endDate)) return;
+    if (!checkEvent()) return;
+
+
     const newEvent = formData;
     newEvent.id = listEvents.length
     newEvent.createDate = new Date();

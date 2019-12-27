@@ -12,28 +12,29 @@ export const updateEvent = (event) => {
 
     let elem = listEvents.find(elem => elem.id == selectedId)
     let inputName = document.querySelector('.input__name');
-    const startDate = document.querySelector(`.start-date`);
-    const startTime = document.querySelector('.start-time')
-    const endDate = document.querySelector(`.end-date`);
-    const endTime = document.querySelector('.end-time');
     let inputDescription = document.querySelector('.description-input');
     let selectColor = document.querySelector('.select__color')
 
-    let strat = new Date(startDate.value + 'T' + startTime.value);
-    let end = new Date(endDate.value + 'T' + endTime.value);
 
-    if (!errorDate(strat.getTime(), end.getTime())) return;
-    if (!duration(strat, end)) return;
-    if (!checkForUpdate(strat.getTime())) return;
-    if (!checkEvent()) return;
+
 
     let form = document.querySelector('.popup__form')
     const formData = [...new FormData(form)]
         .reduce((acc, [field, value]) => ({...acc, [field]: value }), {});
+    let startDateUpdate = new Date(formData.startDate + 'T' + formData.startTime);
+    let endDateUpdate = new Date(formData.endData + 'T' + formData.endTime);
+
+
+
+    if (!errorDate(startDateUpdate.getTime(), endDateUpdate.getTime())) return;
+    if (!duration(startDateUpdate, endDateUpdate)) return;
+    if (!checkForUpdate(startDateUpdate.getTime())) return;
+    if (!checkEvent()) return;
+
 
     const newEvent = formData;
-    newEvent.startDateEvent = startDate;
-    newEvent.endDateEvent = endDate;
+    newEvent.startDateEvent = startDateUpdate;
+    newEvent.endDateEvent = endDateUpdate;
 
     updateEvents(selectedId, newEvent)
         .then(() => getEventsList())
@@ -44,8 +45,8 @@ export const updateEvent = (event) => {
             listEvents[listEvents.indexOf(elemm)] = {
                 id: selectedId,
                 name: inputName.value,
-                startDateEvent: startDate.value + 'T' + startTime.value,
-                endDateEvent: endDate.value + 'T' + endTime.value,
+                startDateEvent: startDateUpdate,
+                endDateEvent: endDateUpdate,
                 description: inputDescription.value,
                 color: selectColor.value,
             }

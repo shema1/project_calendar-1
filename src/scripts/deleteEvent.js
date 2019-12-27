@@ -38,15 +38,4 @@ export const deleteEvent = (event) => {
     close(event);
 
 }
-
-// export const deleteAll = () => {
-//     let listEvents = JSON.parse(localStorage.getItem('httpRequest'))
-//     for (let i = 0; i < listEvents.length - 1; i++) {
-//         let a = document.querySelector('.event')
-//         if (a == null) return
-//         a.parentNode.removeChild(a)
-//     };
-//     localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-// }
-
 popupDel.addEventListener('click', deleteEvent);
