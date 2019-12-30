@@ -19,4 +19,5 @@ For this project I have used the following technologies:
 * HTML
 * CSS3
 * SCSS
+* JS ES6
 * BEM methodology
