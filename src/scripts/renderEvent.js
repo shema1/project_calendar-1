@@ -31,8 +31,13 @@ export const renderEvents = () => {
         let hoursOfEnd = new Date(elem.endDateEvent).getHours();
 
         if (hourOfBegin > hoursOfEnd) {
-            const todayEndEvent = `${new Date(elem.startDateEvent).getFullYear()}-${new Date(elem.startDateEvent).getMonth()+1}-${new Date(elem.startDateEvent).getDate()}`;
-            const tommorowBeginEvent = `${new Date(elem.endDateEvent).getFullYear()}-${new Date(elem.endDateEvent).getMonth()+1}-${new Date(elem.endDateEvent).getDate()}`;
+            const startMonth = `0${new Date(elem.startDateEvent).getMonth()+1}`;
+            const startDate = `0${new Date(elem.startDateEvent).getDate()}`;
+            const endMonth = `0${new Date(elem.endDateEvent).getMonth()+1}`;
+            const endDate = `0${new Date(elem.endDateEvent).getDate()}`;
+
+            const todayEndEvent = `${new Date(elem.startDateEvent).getFullYear()}-${startMonth.slice(-2)}-${startDate.slice(-2)}`;
+            const tommorowBeginEvent = `${new Date(elem.endDateEvent).getFullYear()}-${endMonth.slice(-2)}-${endDate.slice(-2)}`;
 
             const todayEvent = Object.assign({}, elem);
             const tommorowEvent = Object.assign({}, elem);
@@ -40,7 +45,8 @@ export const renderEvents = () => {
             Object.assign(todayEvent, { endDateEvent: `${todayEndEvent}T24:00`, transfer: 'main' });
             Object.assign(tommorowEvent, { startDateEvent: `${tommorowBeginEvent}T00:00`, transfer: 'additional' });
 
-            listEventsFor2Days.push(todayEvent, tommorowEvent);
+            listEventsFor2Days.push(todayEvent);
+            listEventsFor2Days.push(tommorowEvent);
         } else {
             listEventsFor2Days.push(elem);
         }

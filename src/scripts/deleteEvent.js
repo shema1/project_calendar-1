@@ -1,8 +1,9 @@
 import { checkForUpdate } from './validate.js';
-import { selectedId } from './popup.js';
+import { selectedId, eventTarget } from './popup.js';
 import { close } from './utilities.js';
 import { getEventsList, deleteEvents } from './eventsGateaway.js';
 import { renderEvents } from './renderEvent.js';
+
 const popupDel = document.querySelector(`.delete-ivent`);
 
 export const deleteEvent = (event) => {
@@ -19,21 +20,23 @@ export const deleteEvent = (event) => {
     deleteEvents(selectedId)
         .then(() => getEventsList())
         .then(newTasksList => {
-            localStorage.setItem('httpRequest', JSON.stringify(newTasksList))
-            delHtml.parentNode.removeChild(delHtml);
+            localStorage.setItem('httpRequest', JSON.stringify(newTasksList));
+
+            const classEvent = eventTarget.closest('.event').dataset.idNumber;
+            const delEventElems = document.querySelectorAll(`div[data-id-number='${classEvent}']`);
+            const arrayElems = Array.prototype.slice.call(delEventElems);
+            arrayElems.map(elem => elem.remove());
         })
         .catch(() => {
             let elem = listEvents.find(elem => elem.id == selectedId)
             listEvents[listEvents.indexOf(elem)] = {}
-            localStorage.setItem('httpRequest', JSON.stringify(listEvents))
-            delHtml.parentNode.removeChild(delHtml);
-            if (eventTarget.classList !== 'event') {
-                const classEvent = eventTarget.closest('.event');
-                classEvent.remove();
-            } else {
-                eventTarget.remove();
-            }
-            renderEvents()
+            localStorage.setItem('httpRequest', JSON.stringify(listEvents));
+
+            const classEvent = eventTarget.closest('.event').dataset.idNumber;
+            const delEventElems = document.querySelectorAll(`div[data-id-number='${classEvent}']`);
+            const arrayElems = Array.prototype.slice.call(delEventElems);
+            arrayElems.map(elem => elem.remove());
+
         })
     close(event);
 
