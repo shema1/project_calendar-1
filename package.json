@@ -4,15 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "build:scripts": "webpack -p",
-        "build": "npm-run-all build:*",
-        "watch": "webpack -d --devtools eval-source-map -w"
+        "build": "webpack -p",
+        "start": "webpack-dev-server -d --devtools eval-source-map --open"
     },
     "dependencies": {
         "core-js": "^3.6.1",
-        "rimraf": "^3.0.0"
+        "rimraf": "^3.0.0",
+        "webpack-dev-server": "^3.10.1"
     },
     "keywords": [],
     "author": "",
