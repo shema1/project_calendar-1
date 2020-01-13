@@ -5,13 +5,10 @@ const fifteenMinInMs = 900000;
 
 export const errorDate = (start, end) => {
   if (end < start) {
-    alert('error');
+    alert('error, enter the correct data');
     return false;
   }
-  if (start - end > sixHourInMs) {
-    alert('error');
-    return false;
-  }
+
   return true;
 };
 
