@@ -6,7 +6,7 @@ import { addEvent } from './addEvent.js';
 import { deleteEvent } from './deleteEvent.js';
 import { updateEvent } from './updateEvent.js';
 import { createEvents, getEventsList, deleteEvents } from './eventsGateaway.js';
-import './index.scss';
+import '../styles/index.scss';
 
 window.addEventListener('storage', renderEvents);
 
