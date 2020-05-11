@@ -9,7 +9,7 @@ This project is a calendar where you can create your own events.
 * Validation rules: two events cannot overlap in time, one event cannot be longer than 6 hours, you cannot edit / delete an event earlier than 15 minutes before the start
 
 # Preview:
-https://eposha.github.io/project_calendar/
+https://eposha.github.io/project_calendar/dist/index.html
 
 # Getting Started:
 These instructions will get you a copy of the project up and running on your local machine.
